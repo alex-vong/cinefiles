@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+body {
+    font-family: 'Roboto',
+        sans-serif;
+
+
+}
+
+
+.top-level-heading {
+    font-size: var(--fluid-4);
+    font-weight: bold;
+    line-height: 1.15;
+}
+
+.intro-voice {
+
+    font-size: 18px;
+    line-height: 1.15;
+}
+
+.second-level-heading {
+
+    font-size: var(--fluid-3);
+    font-weight: bold;
+}
+
+.third-level-heading {
+
+    font-size: var(--fluid-2);
+    line-height: 1.25;
+    font-weight: bold;
+}
+
+.fourth-level-heading {
+
+    font-size: var(--fluid-1);
+    line-height: 1.15;
+    font-weight: 700;
+}
+
+.body-copy {
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.4;
+    color: var(--pen);
+
+}
+
+.quiet-voice {
+    font-size: 16px;
+    line-height: 1.35;
+    color: var(--stencil);
+
+}
