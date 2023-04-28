@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head> </head>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,7 +16,6 @@
   </head>
 
   <body>
-    <header></header>
     <header>
         <inner-column>
             <masthead class="flex-col">
@@ -153,519 +151,460 @@
       </inner-column>
     </section>
 
-    <section id="now-playing">
 <section id="now-playing" class="main-bg swiper flex-row hidden">
         <!-- <h2 class="fourth-level-heading">Now Playing</h2> -->
       <inner-column>
-        <h2 class="fourth-level-heading">Now Playing</h2>
         <div class="swiper">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <a href="movie-details.html?id=1">
+              <!-- <a href="movie-details.html?id=1">
                 <picture>
                   <img
                     src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c3dpdHplcmxhbmR8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
                     alt="Movie Title"
                   />
-                </picture>
-              </a>
+                </picture> -->
+              
 
               <div class="swiper-details flex-col gap-10">
-                <h3 class="third-level-heading">Movie Title</h3>
+                <h3 class="second-level-heading">The Super Mario Bros. Movie</h3>
                 <div class="swiper-info flex-row gap-20">
-                  <p class="body-copy"><span>Duration:</span>110min</p>
-                  <p class="swiper-rating body-copy"><span>IMDB:</span> 8.2</p>
-                  <p class="body-copy">
+                  <p class="quiet-voice"><span>Duration:</span>110min</p>
+                  <p class="swiper-rating quiet-voice"><span>IMDB:</span> <i class="fas fa-star quiet-voice"></i> 8.2</p>
+                  <p class="quiet-voice">
                     <span>Genre:</span> Action, Adventure, War
                   </p>
                 </div>
 
-                <p class="body-copy">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae
-                  velit, neque blanditiis totam perferendis quisquam corporis
-                  nobis ad fuga incidunt, sit deleniti!
+                <p class="quiet-voice">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima, consectetur. Illo deserunt similique a animi.
                 </p>
 
-                <button>View More Info</button>
+                <button class="quiet-voice">View More Info</button>
               </div>
             </div>
           </div>
         </div>
+
+        <div class="overlay"></div>
       </inner-column>
     </section>
 
-    <section id="home" class="movies-container">
+    <section id="home" class="content-container">
       <inner-column>
-        <!-- Popular Movies -->
-        <section class="show-grid-container grid">
-          <h2 class="fourth-level-heading" id="search-feedback">
-            Popular Movies
-          </h2>
-          <ul class="results-ul">
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4 class="page-title">Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
-                  </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4>Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
-                  </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4>Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
-                  </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4>Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
-                  </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4>Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
-                  </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4>Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
-                  </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4>Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
-                  </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4>Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
-                  </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4>Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
-                  </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4>Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
-                  </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4>Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
-                  </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4>Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
-                  </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </section>
 
-        <!-- Latest Movies -->
-        <section class="show-grid-container grid">
-          <h2 class="fourth-level-heading" id="search-feedback">
-            Latest Movies
-          </h2>
-          <ul class="results-ul">
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4 class="page-title">Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
-                  </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
-                  </div>
+        <section class="content-wrapper flex-col gap-80">
+
+            <!-- Trending Movies -->
+            <section class="show-grid-container">
+                <div class="content-heading flex-row gap-20">
+                    <h2 class="fifth-level-heading" id="search-feedback">Trending</h2>
+                    </h2>
+
+                    <section class="search flex-row">
+            
+                          <form id="trending-type" action="" class="trending-type flex-col gap-10">
+                            <div class="search-radio flex-row gap-15">
+                                <div class="movie-radio flex-row gap-5">
+                                    <input type="radio" id="trending-movies" name="type" value="trending-movies" checked />
+                                    <label for="trending-movies"><i class="fa-solid fa-circle-play"></i> Movies</label>
+                                </div>
+                                <div class="tv-radio flex-row gap-5">
+                                    <input type="radio" id="trending-tv" name="type" value="trending-tv" />
+                                    <label for="trending-tv"><i class="fa-solid fa-tv"></i> TV Shows</label>
+                                </div>
+
+                              </div>
+                          </form>                          
+                       
+                      </section>
+                    <!-- <button class="movies-btn"><a href=""><i class="fa-solid fa-circle-play"></i>Movies</a></button>
+                    <button class="tv-shows-btn"><a href=""></a><i class="fa-solid fa-tv"></i>TV Shows</button> -->
                 </div>
-              </div>
-            </li>
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4>Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
+
+              <ul class="results-ul">
+                <li class="card">
+                    <a href="">
+                        <picture>
+                            <img src="images/unavailable.svg" alt="" />
+                          </picture>
+                    </a>
+                  <div class="card-info flex-col gap-5">
+                    <h4 class="page-title body-copy fw-500">The Super Marios Bro. Movie</h4>
+                    <div class="content-details flex-row gap-10">
+                        <p class="quiet-voice">2022</p>
+                        <p class="quiet-voice"><i class="fas fa-star text-primary"></i> 7.7</p>
+                        <p class="quiet-voice">130 min</p>
+                     
+                    </div>
                   </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
+                </li>
+                <li class="card">
+                  <picture>
+                    <img src="images/unavailable.svg" alt="" />
+                  </picture>
+                  <div class="card-info flex-col gap-5">
+                    <h4 class="page-title body-copy fw-500">The Super Marios Bro. Movie</h4>
+                    <div class="content-details flex-row gap-10">
+                        <p class="quiet-voice">2022</p>
+                        <p class="quiet-voice"><i class="fas fa-star text-primary"></i> 7.7</p>
+                        <p class="quiet-voice">130 min</p>
+                     
+                    </div>
                   </div>
+                </li>
+                <li class="card">
+                  <picture>
+                    <img src="images/unavailable.svg" alt="" />
+                  </picture>
+                  <div class="card-info flex-col gap-5">
+                    <h4 class="page-title body-copy fw-500">The Super Marios Bro. Movie</h4>
+                    <div class="content-details flex-row gap-10">
+                        <p class="quiet-voice">2022</p>
+                        <p class="quiet-voice"><i class="fas fa-star text-primary"></i> 7.7</p>
+                        <p class="quiet-voice">130 min</p>
+                     
+                    </div>
+                  </div>
+                </li>
+                <li class="card">
+                  <picture>
+                    <img src="images/unavailable.svg" alt="" />
+                  </picture>
+                  <div class="card-info flex-col gap-5">
+                    <h4 class="page-title body-copy fw-500">The Super Marios Bro. Movie</h4>
+                    <div class="content-details flex-row gap-10">
+                        <p class="quiet-voice">2022</p>
+                        <p class="quiet-voice"><i class="fas fa-star text-primary"></i> 7.7</p>
+                        <p class="quiet-voice">130 min</p>
+                     
+                    </div>
+                  </div>
+                </li>
+                <li class="card">
+                  <picture>
+                    <img src="images/unavailable.svg" alt="" />
+                  </picture>
+                  <div class="card-info flex-col gap-5">
+                    <h4 class="page-title body-copy fw-500">The Super Marios Bro. Movie</h4>
+                    <div class="content-details flex-row gap-10">
+                        <p class="quiet-voice">2022</p>
+                        <p class="quiet-voice"><i class="fas fa-star text-primary"></i> 7.7</p>
+                        <p class="quiet-voice">130 min</p>
+                     
+                    </div>
+                  </div>
+                </li>
+                <li class="card">
+                  <picture>
+                    <img src="images/unavailable.svg" alt="" />
+                  </picture>
+                  <div class="card-info flex-col gap-5">
+                    <h4 class="page-title body-copy fw-500">The Super Marios Bro. Movie</h4>
+                    <div class="content-details flex-row gap-10">
+                        <p class="quiet-voice">2022</p>
+                        <p class="quiet-voice"><i class="fas fa-star text-primary"></i> 7.7</p>
+                        <p class="quiet-voice">130 min</p>
+                     
+                    </div>
+                  </div>
+                </li>
+                <li class="card">
+                  <picture>
+                    <img src="images/unavailable.svg" alt="" />
+                  </picture>
+                  <div class="card-info flex-col gap-5">
+                    <h4 class="page-title body-copy fw-500">The Super Marios Bro. Movie</h4>
+                    <div class="content-details flex-row gap-10">
+                        <p class="quiet-voice">2022</p>
+                        <p class="quiet-voice"><i class="fas fa-star text-primary"></i> 7.7</p>
+                        <p class="quiet-voice">130 min</p>
+                     
+                    </div>
+                  </div>
+                </li>
+                <li class="card">
+                  <picture>
+                    <img src="images/unavailable.svg" alt="" />
+                  </picture>
+                  <div class="card-info flex-col gap-5">
+                    <h4 class="page-title body-copy fw-500">The Super Marios Bro. Movie</h4>
+                    <div class="content-details flex-row gap-10">
+                        <p class="quiet-voice">2022</p>
+                        <p class="quiet-voice"><i class="fas fa-star text-primary"></i> 7.7</p>
+                        <p class="quiet-voice">130 min</p>
+                     
+                    </div>
+                  </div>
+                </li>
+                <li class="card">
+                  <picture>
+                    <img src="images/unavailable.svg" alt="" />
+                  </picture>
+                  <div class="card-info flex-col gap-5">
+                    <h4 class="page-title body-copy fw-500">The Super Marios Bro. Movie</h4>
+                    <div class="content-details flex-row gap-10">
+                        <p class="quiet-voice">2022</p>
+                        <p class="quiet-voice"><i class="fas fa-star text-primary"></i> 7.7</p>
+                        <p class="quiet-voice">130 min</p>
+                     
+                    </div>
+                  </div>
+                </li>
+                <li class="card">
+                  <picture>
+                    <img src="images/unavailable.svg" alt="" />
+                  </picture>
+                  <div class="card-info flex-col gap-5">
+                    <h4 class="page-title body-copy fw-500">The Super Marios Bro. Movie</h4>
+                    <div class="content-details flex-row gap-10">
+                        <p class="quiet-voice">2022</p>
+                        <p class="quiet-voice"><i class="fas fa-star text-primary"></i> 7.7</p>
+                        <p class="quiet-voice">130 min</p>
+                     
+                    </div>
+                  </div>
+                </li>
+
+              </ul>
+            </section>
+    
+            <!-- Latest Movies -->
+            <section class="show-grid-container grid">
+                <div class="content-heading">
+
+                    <h2 class="fourth-level-heading" id="search-feedback">
+                      Latest Movies
+                    </h2>
                 </div>
-              </div>
-            </li>
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4>Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
+              <ul class="results-ul">
+               
+                <li class="card">
+                  <picture>
+                    <img src="images/unavailable.svg" alt="" />
+                  </picture>
+                  <div class="card-info">
+                    <h4>Movie Title</h4>
+                    <div class="content-details flex-column sb">
+                      <div class="flex-row gap-10">
+                        <p class="quiet-voice">2022</p>
+                        <p class="quiet-voice">130m</p>
+                      </div>
+                      <div>
+                        <p class="quiet-voice">7.7</p>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
+                </li>
+                <li class="card">
+                  <picture>
+                    <img src="images/unavailable.svg" alt="" />
+                  </picture>
+                  <div class="card-info">
+                    <h4>Movie Title</h4>
+                    <div class="content-details flex-column sb">
+                      <div class="flex-row gap-10">
+                        <p class="quiet-voice">2022</p>
+                        <p class="quiet-voice">130m</p>
+                      </div>
+                      <div>
+                        <p class="quiet-voice">7.7</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4>Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
+                </li>
+                <li class="card">
+                  <picture>
+                    <img src="images/unavailable.svg" alt="" />
+                  </picture>
+                  <div class="card-info">
+                    <h4>Movie Title</h4>
+                    <div class="content-details flex-column sb">
+                      <div class="flex-row gap-10">
+                        <p class="quiet-voice">2022</p>
+                        <p class="quiet-voice">130m</p>
+                      </div>
+                      <div>
+                        <p class="quiet-voice">7.7</p>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
+                </li>
+                <li class="card">
+                  <picture>
+                    <img src="images/unavailable.svg" alt="" />
+                  </picture>
+                  <div class="card-info">
+                    <h4>Movie Title</h4>
+                    <div class="content-details flex-column sb">
+                      <div class="flex-row gap-10">
+                        <p class="quiet-voice">2022</p>
+                        <p class="quiet-voice">130m</p>
+                      </div>
+                      <div>
+                        <p class="quiet-voice">7.7</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4>Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
+                </li>
+                <li class="card">
+                  <picture>
+                    <img src="images/unavailable.svg" alt="" />
+                  </picture>
+                  <div class="card-info">
+                    <h4>Movie Title</h4>
+                    <div class="content-details flex-column sb">
+                      <div class="flex-row gap-10">
+                        <p class="quiet-voice">2022</p>
+                        <p class="quiet-voice">130m</p>
+                      </div>
+                      <div>
+                        <p class="quiet-voice">7.7</p>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
+                </li>
+                <li class="card">
+                  <picture>
+                    <img src="images/unavailable.svg" alt="" />
+                  </picture>
+                  <div class="card-info">
+                    <h4>Movie Title</h4>
+                    <div class="content-details flex-column sb">
+                      <div class="flex-row gap-10">
+                        <p class="quiet-voice">2022</p>
+                        <p class="quiet-voice">130m</p>
+                      </div>
+                      <div>
+                        <p class="quiet-voice">7.7</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4>Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
+                </li>
+                <li class="card">
+                  <picture>
+                    <img src="images/unavailable.svg" alt="" />
+                  </picture>
+                  <div class="card-info">
+                    <h4>Movie Title</h4>
+                    <div class="content-details flex-column sb">
+                      <div class="flex-row gap-10">
+                        <p class="quiet-voice">2022</p>
+                        <p class="quiet-voice">130m</p>
+                      </div>
+                      <div>
+                        <p class="quiet-voice">7.7</p>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
+                </li>
+                <li class="card">
+                  <picture>
+                    <img src="images/unavailable.svg" alt="" />
+                  </picture>
+                  <div class="card-info">
+                    <h4>Movie Title</h4>
+                    <div class="content-details flex-column sb">
+                      <div class="flex-row gap-10">
+                        <p class="quiet-voice">2022</p>
+                        <p class="quiet-voice">130m</p>
+                      </div>
+                      <div>
+                        <p class="quiet-voice">7.7</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4>Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
+                </li>
+                <li class="card">
+                  <picture>
+                    <img src="images/unavailable.svg" alt="" />
+                  </picture>
+                  <div class="card-info">
+                    <h4>Movie Title</h4>
+                    <div class="content-details flex-column sb">
+                      <div class="flex-row gap-10">
+                        <p class="quiet-voice">2022</p>
+                        <p class="quiet-voice">130m</p>
+                      </div>
+                      <div>
+                        <p class="quiet-voice">7.7</p>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
+                </li>
+                <li class="card">
+                  <picture>
+                    <img src="images/unavailable.svg" alt="" />
+                  </picture>
+                  <div class="card-info">
+                    <h4>Movie Title</h4>
+                    <div class="content-details flex-column sb">
+                      <div class="flex-row gap-10">
+                        <p class="quiet-voice">2022</p>
+                        <p class="quiet-voice">130m</p>
+                      </div>
+                      <div>
+                        <p class="quiet-voice">7.7</p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4>Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
-                  </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4>Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
-                  </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4>Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
-                  </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4>Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
-                  </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <picture>
-                <img src="images/unavailable.svg" alt="" />
-              </picture>
-              <div class="card-info">
-                <h4>Movie Title</h4>
-                <div class="content-details flex-column sb">
-                  <div class="flex-row gap-10">
-                    <p class="quiet-voice">2022</p>
-                    <p class="quiet-voice">130m</p>
-                  </div>
-                  <div>
-                    <p class="quiet-voice">7.7</p>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
+                </li>
+              </ul>
+            </section>
         </section>
       </inner-column>
     </section>
 
     <footer>
       <inner-column>
-        <section class="logos">
-          <a href="#">
-            <picture class="logo">
-              <img src="images/tv-db-seeklogo.com.svg" alt="" />
-            </picture>
-          </a>
-          <h4 class="body-copy">Follow Us</h4>
-          <div class="social-media">
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-facebook-f"></i>
-            <i class="fa-brands fa-twitter"></i>
-          </div>
-        </section>
-        <section class="about">
-          <h4 class="body-copy">About</h4>
-          <a href="">About theTVdb</a>
-          <a href="">Earn Points</a>
-          <a href="">Subcribe</a>
-          <a href="">support</a>
-        </section>
-        <section class="Discover">
-          <h4 class="body-copy">Discover</h4>
-          <a href="">On Today</a>
-          <a href="">Awards</a>
-          <a href="">Companies</a>
-          <a href="">People</a>
-          <a href="">List</a>
-          <a href="">Taxonomy</a>
-        </section>
-        <section class="legal">
-          <h4 class="body-copy">Legal</h4>
-          <a href="">Terms of Service</a>
-          <a href="">Privacy Policy</a>
-          <a href="">DMCA</a>
+        <section class="footer-wrapper flex-col gap-15">
+            <section class="logos flex-col gap-8">
+              <a href="#">
+                <picture class="logo">
+                  <img src="images/tv-db-seeklogo.com.svg" alt="" />
+                </picture>
+              </a>
+              <h4 class="body-copy">Follow Us</h4>
+              <div class="social-media flex-col gap-8">
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-twitter"></i>
+              </div>
+            </section>
+            <section class="about flex-col gap-5">
+              <h5 class="body-copy">About</h5>
+              <div class="about-links flex-col gap-8">
+                  <a href="">About theTVdb</a>
+                  <a href="">Earn Points</a>
+                  <a href="">Subscribe</a>
+                  <a href="">support</a>
+              </div>
+            </section>
+            <section class="discover flex-col gap-5">
+              <h5 class="body-copy">Discover</h5>
+              <div class="discover-links flex-col gap-8">
+                  <a href="">On Today</a>
+                  <a href="">Awards</a>
+                  <a href="">Companies</a>
+                  <a href="">People</a>
+                  <a href="">List</a>
+                  <a href="">Taxonomy</a>
+              </div>
+            </section>
+            <section class="legal flex-col gap-5">
+              <h5 class="body-copy">Legal</h5>
+              <div class="legal-links flex-col gap-8">
+                  <a href="">Terms of Service</a>
+                  <a href="">Privacy Policy</a>
+                  <a href="">DMCA</a>
+              </div>
+            </section>
         </section>
       </inner-column>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-
-    <script src="js/components.js"></script>
+<!-- 
+    <script src="js/components.js"></script> -->
     <script src="js/script.js"></script>
   </body>
 </html>
