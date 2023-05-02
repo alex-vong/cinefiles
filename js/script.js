@@ -9,6 +9,17 @@ const form = document.querySelector('#search-form'),
   gridContainer = document.querySelector('.show-grid-container');
 
 dropDown.addEventListener('click', () => {
+  gridContainer = document.querySelector('.show-grid-container'),
+  nowPlaying = document.getElementById('now-playing'),
+  trendingList = document.querySelector('.trending-ul'),
+  popularList = document.querySelector('.popular-ul'),
+  upcomingList = document.querySelector('.upcoming-ul'),
+  tvBtn = document.getElementById('tv-homepage'),
+  movieBtn = document.getElementById('movies-homepage'),
+  globalState = window.location.pathname;
+
+console.log(tvBtn);
+function dropDownSearch() {
   console.log(navSearch.classList);
   navSearch.classList.remove('slide-out');
   navSearch.classList.add('slide-in');
