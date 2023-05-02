@@ -65,10 +65,10 @@ allHeaders.forEach((header) => {
                           <form id="search-form" action="" class="search-form">
                             <!-- movies and shows radio box -->
                             <div class="search-radio">
-                              <input type="radio" id="movie" name="type" value="movie" checked />
+                              <input type="radio" id="movies" name="type" value="movies" checked />
                               <label for="movies">Movies</label>
                               <input type="radio" id="tv" name="type" value="tv" />
-                              <label for="shows">TV Shows</label>
+                              <label for="tv">TV Shows</label>
                             </div>
                             <div class="search-flex">
                               <input
@@ -85,8 +85,8 @@ allHeaders.forEach((header) => {
                           <i class="fa-regular fa-circle-xmark close-search"></i>
 
                           <div class="login">
-                            <i class="fa-regular fa-circle-user"></i>
-                            <a href="" class="body-copy">Login</a>
+                            
+                            <a href=""><i class="fa-regular fa-circle-user body-copy"></i></a>
                         </div>
                           
                         </div>
