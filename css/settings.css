@@ -1,16 +1,13 @@
 body {
-    --black: #111111;
-    --primary:  #79c142;
-    --white: #FFFFFF;
-    --marker:  #79c142;
+  --black: #111111;
+  --primary: #79c142;
+  --white: #ffffff;
+  --marker: #79c142;
 
-    --pen:  #e9ecef;
-    --stencil:  #565c67;
-    --bg-main:  #020916;
-    --bg-secondary:  #0f1622;
-
-
+  --pen: #e9ecef;
+  --sketch: rgb(129, 129, 129);
+  --stencil: rgb(203, 203, 203);
+  --accent: rgba(2, 9, 22, 0.75);
+  --bg-main: rgb(2, 9, 22);
+  --bg-secondary: #0f1622;
 }
-
-
-

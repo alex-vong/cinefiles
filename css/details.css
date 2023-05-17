@@ -1,0 +1,126 @@
+/* Movie details page */
+
+.content-details-wrapper picture img {
+  /* height: 100%; */
+  /* /* min-width: 100%; */
+  max-width: 450px;
+  object-fit: cover;
+  margin: auto;
+}
+
+/* .content-details-wrapper .credits-grid img {
+  max-height: 125px;
+  width: 100%;
+} */
+
+li.grid-bumper img {
+  max-height: 175px;
+}
+
+.credits {
+  margin-top: 10px;
+}
+
+.credits-grid .credits h3 {
+  text-align: left;
+}
+.credits-grid li .credit-info {
+  text-align: center;
+}
+.credits-grid .credit-info .body-copy {
+  font-size: 16px;
+}
+.credits-grid .credit-info .quiet-voice {
+  font-size: 14px;
+}
+
+body.details-page .content-details-wrapper {
+  margin: 50px 0;
+}
+
+.main-card,
+.back {
+  position: relative;
+  z-index: 2;
+}
+
+body.details-page .main-bg {
+  min-height: 102vh;
+  box-shadow: inset 0 -25px 60px 40px rgb(2 9 22 / 50%);
+}
+body.details-page inner-column {
+  width: min(90%, 1200px);
+}
+
+body.details-page .icons {
+  display: none;
+}
+
+body.details-page .return-links .btn {
+  border-radius: 0%;
+  color: var(--stencil);
+}
+
+body.details-page .content-links {
+  margin-top: 10px;
+}
+
+body.details-page .overlay {
+  background-color: rgba(2, 9, 22, 0.85);
+}
+
+body.details-page .content-details h3 {
+  text-align: center;
+}
+
+body.details-page .info span {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+body.details-page .info {
+  margin: 30px 0;
+}
+
+body.details-page .info div {
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--stencil);
+  border-color: rgba(204, 204, 204, 0.3);
+}
+
+@media (min-width: 768px) {
+  body.details-page .main-bg {
+    min-height: fit-content;
+  }
+
+  body.details-page .movie-details img {
+    width: 350px;
+    max-width: 400px;
+    height: 475px;
+  }
+
+  body.details-page .main-card {
+    flex-direction: row;
+  }
+
+  body.details-page .content-details {
+    max-width: 70ch;
+  }
+}
+
+@media (min-width: 800px) {
+  body.details-page .content-details {
+    align-self: center;
+  }
+}
+@media (min-width: 11600px) {
+  body.details-page .main-card {
+    gap: 0;
+  }
+}
+
+@media (min-width: 1180px) {
+  body.details-page .content-details {
+    flex: 2;
+  }
+}

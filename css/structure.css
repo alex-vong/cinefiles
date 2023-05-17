@@ -12,7 +12,7 @@ body {
 
 inner-column {
   display: block;
-  width: min(90%, 1600px); /* could be a variable in settings */
+  width: min(90%, 1400px); /* could be a variable in settings */
   margin-right: auto;
   margin-left: auto;
 }
