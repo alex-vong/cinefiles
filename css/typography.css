@@ -34,7 +34,7 @@ body {
   font-weight: 700;
 }
 .fifth-level-heading {
-  font-size: var(--fluid-1);
+  font-size: 23px;
   line-height: 1.15;
   font-weight: 500;
 }
@@ -47,7 +47,12 @@ body {
 }
 
 .quiet-voice {
-  font-size: clamp(15px, 1.2em, 17px);
+  font-size: 17px;
+  line-height: 1.35;
+  /* color: var(--stencil); */
+}
+.whisper {
+  font-size: 16px;
   line-height: 1.35;
   /* color: var(--stencil); */
 }
