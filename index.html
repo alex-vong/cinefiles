@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CineFiles - Home</title>
+    <title>CineFiles</title>
     <meta name="og:description" content="Search For All Your Favorite TV Shows" />
     <meta property="og:title" content="Welcome - The TV DataBase" />
     <meta property="og:type" content="">
@@ -13,89 +13,32 @@
     <link rel="shortcut icon" type="image/jpg" href="images/favicon.svg" />
     <link rel='stylesheet' href='css/style.css'>
     <link rel='stylesheet' href='css/details.css'>
+    <link rel='stylesheet' href='lib/swiper.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
   </head>
 
   <body class="home-page">
     <header>
-        <inner-column>
-            <masthead class="flex-col">
-                <div class="mobile">
-                    <div>
-                        <a href="javascript:location.reload();">
-                            <picture class='logo'>
-                                <img src="images/tv-db-seeklogo.com.svg" alt="">
-                            </picture>
-                        </a>
-                        <nav-links class="body-copy">
-                            <a href="">Home</a>
-                            <a href="">About</a>
-                            <a href="">Top IMDB</a>
-                        </nav-links>
-                    </div>
-                    <div class="icons">
-                        <i class="fa-solid fa-magnifying-glass search-dd"></i>
-                        <i class="fa-solid fa-bars"></i>
-                        <div class="login">
-                            <a href="" class="body-copy"><i class="fa-regular fa-circle-user"></i></a>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </masthead>
-            <nav-bar class="nav-search slide-out">
-                <nav-inputs>
-                    <section class="search">
-                        <div class="container">
-                          <form id="search-form" action="" class="search-form flex-col gap-10">
-                            <!-- movies and shows radio box -->
-                            <div class="search-radio flex-row gap-20">
-                                <div class="movie-radio flex-row gap-5">
-                                    <input type="radio" id="movies" name="type" value="movies" checked />
-                                    <label for="movies">Movies</label>
-                                </div>
-                                <div class="tv-radio flex-row gap-5">
-                                    <input type="radio" id="tv" name="type" value="tv" />
-                                    <label for="tv">TV Shows</label>
-                                </div>
-
- 
-                              </div>
-                            <div class="search-flex flex-row gap-10">
-                                <input
-                                  type="text"
-                                  name="search-term"
-                                  id="search-term"
-                                  placeholder="Search database"
-                                />
-                                <i class="fa-regular fa-circle-xmark close-search"></i>
-                                <i class="fa-regular fa-circle-user login"></i>
-                              </div>
-                          </form>
-
-                          
-                        </div>
-                      </section>
-                </nav-inputs>
-            </nav-bar>
-        </inner-column>
+        
     </header>
 
-    <section class="landing-container hidden">
+    <section class="landing-container">
       <inner-column>
         <section class="landing-wrapper-about">
-          <picture class="logo">
-            <img src="images/tv-db-seeklogo.com.svg" alt="" />
-          </picture>
+            <a href="/index.html">
+                <section class="about-logo flex-row">
+                  <span class="third-level-heading main">C</span>
+                  <span class="third-level-heading main">F</span>
+                </section>
+              </a>
           <h2 class="fourth-level-heading">
-            The Ultimate Movie and TV Database.
+            The Ultimate <span class="primary fw-600">Movie</span> and <span class="primary fw-600">TV</span> Database.
           </h2>
-
-          <button class="btn"><a href=""></a> Go to HomePage</button>
 
           <section class="landing-info">
             <section class="landing-info-welcome">
-              <h4 class="body-copy">Welcome</h4>
+              <h4 class="fifth-level-heading">Welcome</h4>
               <div class="flex-col gap-10">
                 <p class="quiet-voice">
                   Welcome to <span>CineFiles</span>, your ultimate movie and TV
@@ -125,14 +68,10 @@
           </section>
 
           <section class="landing-info-about">
-            <h4 class="body-copy">About Cine<span>Files</span></h4>
+            <h4 class="fifth-level-heading">About <span>CineFiles</span></h4>
             <div class="flex-col gap-10">
               <p class="quiet-voice">
-                <span>CineFiles</span> is a web application that provides users
-                with an extensive database of movies and TV shows that can be
-                easily searched and explored. We use the
-                <span>Movie Database API</span> to offer users access to the
-                latest and greatest movies and TV shows.
+                <span>CineFiles</span> is a dynamic web application that offers users a comprehensive collection of movies and TV shows through an intuitive and user-friendly interface. Our platform harnesses the power of the <a href="https://www.themoviedb.org/"><span>Movie Database API</span></a>, enabling seamless access to an extensive database of diverse content. Users can easily search for specific titles or explore a wide range of genres, actors, directors, and more. With CineFiles, discovering and staying up-to-date with the latest and greatest movies and TV shows has never been easier.
               </p>
 
               <p class="quiet-voice">
@@ -146,49 +85,55 @@
               </p>
             </div>
           </section>
+
+          <section class="landing-info-tools">
+            <h4 class="fifth-level-heading"> Tools</h4>
+            <div class="tools-list flex-col gap-20">
+                <div class="design-tools">
+                    <h2 class="body-copy primary">Design:</h2>
+                    <ul class="flex-col gap-8">
+                      <li>- Pen and Paper</li>
+                      <li>- Whimsical</li>
+                      <li>- Figma</li>
+                      <li>- Affinity Designer</li>
+                      <li>- Coolors.co</li>
+                    </ul>
+                </div>
+                <div class="development-tools">
+                    <h2 class="body-copy primary">Development:</h2>
+                    <ul class="flex-col gap-8">
+                        <li>- HTML</li>
+                        <li>- CSS</li>
+                        <li>- JavaScript</li>
+                        <li>- Postman</li>
+                        <li>- The Movie Database API</li>
+                        <li>- GitHub</li>
+                        <li>- Tower</li>
+                        <li>- Chrome Developer Tools</li>
+                    </ul>
+                </div>
+                <div class="deploy-tools">
+                    <h2 class="body-copy primary">Deployment:</h2>
+                    <ul class="flex-col gap-8">
+                      <li>- Amazon Web Servers</li>
+                    </ul>
+                </div>
+            </div>
+          </section>
+
         </section>
       </inner-column>
     </section>
 
-
-
-    <section id="now-playing" class="main-bg swiper flex-row hidden">
-            <!-- <h2 class="fourth-level-heading">Now Playing</h2> -->
-        <inner-column>
+    <section id="now-playing" class="main-bg-2 flex-row">
+        
             <div class="swiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                    <!-- <a href="details.html?id=1">
-                        <picture>
-                        <img
-                            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c3dpdHplcmxhbmR8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                            alt="Movie Title"
-                        />
-                        </picture> -->
-                    
-
-                        <div class="swiper-details flex-col gap-10">
-                            <h3 class="second-level-heading">The Super Mario Bros. Movie</h3>
-                            <div class="swiper-info info flex-row gap-20">
-                            <p class="quiet-voice"><span>Duration:</span>110min</p>
-                            <p class="swiper-rating quiet-voice"><span>IMDB:</span> <i class="fas fa-star quiet-voice"></i> 8.2</p>
-                            <p class="quiet-voice">
-                                <span>Genre:</span> Action, Adventure, War
-                            </p>
-                            </div>
-
-                            <p class="quiet-voice">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima, consectetur. Illo deserunt similique a animi.
-                            </p>
-
-                            <button class="quiet-voice btn">View More Info</button>
-                        </div>
-                    </div>
                 </div>
+                <div class="swiper-pagination"></div>
             </div>
 
-            <div class="overlay"></div>
-        </inner-column>
+            
     </section>
 
     <section id="home" class="content-container">
@@ -252,55 +197,12 @@
     </section>
 
     <footer>
-      <inner-column>
-        <section class="footer-wrapper flex-col gap-15">
-            <section class="logos flex-col gap-8">
-              <a href="#">
-                <picture class="logo">
-                  <img src="images/tv-db-seeklogo.com.svg" alt="" />
-                </picture>
-              </a>
-              <h4 class="body-copy">Follow Us</h4>
-              <div class="social-media flex-col gap-8">
-                <i class="fa-brands fa-instagram"></i>
-                <i class="fa-brands fa-facebook-f"></i>
-                <i class="fa-brands fa-twitter"></i>
-              </div>
-            </section>
-            <section class="about flex-col gap-5">
-              <h5 class="body-copy">About</h5>
-              <div class="about-links flex-col gap-8">
-                  <a href="">About theTVdb</a>
-                  <a href="">Earn Points</a>
-                  <a href="">Subscribe</a>
-                  <a href="">support</a>
-              </div>
-            </section>
-            <section class="discover flex-col gap-5">
-              <h5 class="body-copy">Discover</h5>
-              <div class="discover-links flex-col gap-8">
-                  <a href="">On Today</a>
-                  <a href="">Awards</a>
-                  <a href="">Companies</a>
-                  <a href="">People</a>
-                  <a href="">List</a>
-                  <a href="">Taxonomy</a>
-              </div>
-            </section>
-            <section class="legal flex-col gap-5">
-              <h5 class="body-copy">Legal</h5>
-              <div class="legal-links flex-col gap-8">
-                  <a href="">Terms of Service</a>
-                  <a href="">Privacy Policy</a>
-                  <a href="">DMCA</a>
-              </div>
-            </section>
-        </section>
-      </inner-column>
+
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-<!-- 
-    <script src="js/components.js"></script> -->
+
+    <script src="js/components.js"></script>
     <script src="js/script.js"></script>
+    <script src="lib/swiper.js"></script>
   </body>
 </html>
