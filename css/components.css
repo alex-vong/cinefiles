@@ -1,3 +1,73 @@
+h1.logo-heading {
+  align-self: center;
+}
+
+.main-bg {
+  align-items: flex-end;
+  position: relative;
+  background: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7fd1ae25-db35-4d7d-b113-96a01e2c0a88/dftua4i-6a5c5934-f6be-41f6-8e83-28d2edbb5af6.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzdmZDFhZTI1LWRiMzUtNGQ3ZC1iMTEzLTk2YTAxZTJjMGE4OFwvZGZ0dWE0aS02YTVjNTkzNC1mNmJlLTQxZjYtOGU4My0yOGQyZWRiYjVhZjYuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.DoCxU7179mpOcG8S9ugFujl8ECyEqsEmXcGY4HYcKTw')
+    no-repeat center center/cover fixed;
+  /* background-attachment: fixed; */
+  min-height: 70vh;
+  box-shadow: inset 0 -25px 60px 40px rgba(2, 9, 22, 0.5);
+  box-shadow: inset 0px -260px 30px 0px rgb(0 0 0 / 50%);
+}
+nav-links a:hover,
+.icons i:hover {
+  color: var(--primary);
+  transition: 0.75s ease;
+}
+
+label:hover,
+.icons i:hover {
+  cursor: pointer;
+}
+
+/* .swiper-slide {
+  background: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7fd1ae25-db35-4d7d-b113-96a01e2c0a88/dftua4i-6a5c5934-f6be-41f6-8e83-28d2edbb5af6.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzdmZDFhZTI1LWRiMzUtNGQ3ZC1iMTEzLTk2YTAxZTJjMGE4OFwvZGZ0dWE0aS02YTVjNTkzNC1mNmJlLTQxZjYtOGU4My0yOGQyZWRiYjVhZjYuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.DoCxU7179mpOcG8S9ugFujl8ECyEqsEmXcGY4HYcKTw')
+    no-repeat center center/cover fixed;
+} */
+
+.about-logo span {
+  padding: 2px 4px;
+}
+
+.about-logo span:nth-child(odd) {
+  transform: rotate(5deg);
+  border: 1px solid var(--primary);
+}
+.about-logo span:nth-child(even) {
+  transform: rotate(-5deg);
+  color: var(--primary);
+}
+footer .about-logo span:nth-child(odd) {
+  transform: rotate(8deg);
+  background-color: var(--primary);
+  color: var(--bg-secondary);
+  font-weight: 900;
+}
+
+footer .about-logo span:nth-child(even) {
+  transform: rotate(8deg);
+  border: 1px solid var(--primary);
+}
+
+.overlay {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    2,
+    9,
+    22,
+    0.75
+  ); /* Change the opacity value to adjust darkness */
+  /* z-index: 1; */
+}
+
 .hidden {
   display: none;
 }
@@ -12,23 +82,252 @@
   flex-direction: column;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .sb {
   display: flex;
   justify-content: space-between;
 }
 
+.flex-1 {
+  flex: 1;
+}
+
+.genre {
+  color: var(--primary);
+  /* font-weight: 600; */
+}
+
+.over-view {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.gap-2 {
+  gap: 2px;
+}
 .gap-5 {
   gap: 5px;
+}
+.gap-8 {
+  gap: 8px;
 }
 .gap-10 {
   gap: 10px;
 }
 .gap-15 {
-  gap: 15px;
+  grid-gap: 5px 15px;
 }
 .gap-20 {
   gap: 20px;
 }
 .gap-25 {
   gap: 25px;
+}
+.gap-30 {
+  gap: 30px;
+}
+.gap-40 {
+  gap: 40px;
+}
+.gap-80 {
+  gap: 80px;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+.fw-600 {
+  font-weight: 600;
+}
+.fw-700 {
+  font-weight: 700;
+}
+
+i.fa-star {
+  color: #fbd000;
+}
+
+i.primary,
+.primary {
+  color: var(--primary);
+}
+
+.home-page .info span {
+  display: none;
+}
+
+.return-links {
+  position: relative;
+  z-index: 1;
+}
+
+.btn {
+  display: inline-block;
+  background-color: rgba(2, 9, 22, 0.7);
+  max-width: fit-content;
+  border: 1px solid var(--primary);
+  border-radius: 30px;
+  color: var(--primary);
+  outline: none;
+  padding: 10px 30px;
+  transition: 0.75s ease-out;
+}
+
+.btn2 {
+  border-radius: 0;
+  color: var(--white);
+  border: 2px solid var(--stencil);
+}
+
+.btn:hover {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.btn2:hover {
+  border-color: var(--primary);
+}
+.btn2:hover i.primary {
+  /* background-color: var(--primary); */
+  color: var(--white);
+}
+
+.btn i {
+  /* padding-right: 5px; */
+}
+
+/* .content-details button {
+  padding: 10px 20px;
+} */
+
+.search-pagination {
+  margin-top: 30px;
+}
+
+.search-pagination .btn {
+  border-radius: 5px;
+  padding: 8px 16px;
+  color: var(--white);
+}
+
+.search-pagination .btn i {
+  padding: 0;
+}
+
+.btn:disabled {
+  color: var(--sketch);
+  border-color: var(--sketch);
+}
+
+.content {
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  font-size: 14px;
+  padding: 0px 4px;
+}
+
+.goBack {
+  padding: 9.5px 16px;
+}
+
+input[type='radio'] {
+  margin: 0;
+}
+nav-inputs .tv-radio input[type='radio'] + label {
+  width: 8ch;
+}
+
+input[type='radio']:checked + label {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+input[type='radio'] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.content-container .search input[type='radio'] + label {
+  padding: 10px 20px;
+  background-color: rgba(208, 208, 208, 0.3);
+  /* border: 1px solid var(--stencil); */
+  font-size: 15px;
+}
+
+.content-container .search input[type='radio']:checked + label {
+  /* border: 1px solid var(--primary); */
+  background-color: var(--primary);
+  color: var(--bg-main);
+  font-size: 15px;
+  /* font-weight: 400; */
+}
+
+.movies-btn:hover {
+  background-color: var(--bg-main);
+}
+
+input[type='text'] {
+  padding: 10px 20px;
+  background-color: var(--bg-main);
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 30px;
+  caret-color: var(--primary);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  width: 70vw;
+  text-indent: 25px;
+  position: relative;
+}
+
+.search-bar-icon {
+  position: absolute;
+  padding-left: 15px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+input::placeholder {
+  color: var(--stencil);
+}
+
+input:focus {
+  outline: 2px solid var(--primary);
+  background: var(--bg-secondary);
+}
+
+.swiper-pagination .swiper-pagination-bullet {
+  background-color: var(--primary);
+  color: var(--primary);
+}
+
+#search-results-wrapper {
+  min-height: 40vh;
+}
+.search-page-blank {
+  margin: 50px 0 15px;
+}
+
+@media (min-width: 768px) {
+  body.home-page .main-bg {
+    min-height: 80vh;
+    box-shadow: inset 0 0 120px 12rem rgb(2 9 22 / 50%);
+  }
+
+  input[type='text'] {
+    width: 40vw;
+  }
+}
+
+@media (min-width: 1000px) {
+  input[type='text'] {
+    width: 20vw;
+  }
 }
