@@ -2,6 +2,10 @@ h1.logo-heading {
   align-self: center;
 }
 
+.transition-effect {
+  transition: opacity 0.3s ease-in;
+}
+
 .main-bg {
   align-items: flex-end;
   position: relative;
@@ -40,6 +44,8 @@ label:hover,
   transform: rotate(-5deg);
   color: var(--primary);
 }
+
+.landing-wrapper-about .about-logo span:nth-child(odd),
 footer .about-logo span:nth-child(odd) {
   transform: rotate(8deg);
   background-color: var(--primary);
@@ -47,9 +53,23 @@ footer .about-logo span:nth-child(odd) {
   font-weight: 900;
 }
 
+.landing-wrapper-about .about-logo span:nth-child(even),
 footer .about-logo span:nth-child(even) {
   transform: rotate(8deg);
   border: 1px solid var(--primary);
+}
+
+.landing-wrapper-about .about-logo span {
+  padding: 0 5px;
+}
+
+.landing-info-tools {
+  align-self: flex-start;
+  width: 100%;
+}
+
+.tools-list h2 {
+  margin-bottom: 2px;
 }
 
 .overlay {
@@ -70,6 +90,11 @@ footer .about-logo span:nth-child(even) {
 
 .hidden {
   display: none;
+}
+
+:is(a, i).active {
+  color: var(--primary);
+  font-weight: 600;
 }
 
 .flex-row {
@@ -197,14 +222,6 @@ i.primary,
   color: var(--white);
 }
 
-.btn i {
-  /* padding-right: 5px; */
-}
-
-/* .content-details button {
-  padding: 10px 20px;
-} */
-
 .search-pagination {
   margin-top: 30px;
 }
@@ -315,6 +332,28 @@ input:focus {
   margin: 50px 0 15px;
 }
 
+li {
+  position: relative;
+  top: -10px;
+  opacity: 0;
+  animation: slideUp 0.5s ease-in-out forwards;
+}
+
+@keyframes slideUp {
+  0% {
+    top: 15px;
+    opacity: 0;
+  }
+  50% {
+    top: 5px;
+    opacity: 0.5;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+
 @media (min-width: 768px) {
   body.home-page .main-bg {
     min-height: 80vh;
@@ -323,6 +362,12 @@ input:focus {
 
   input[type='text'] {
     width: 40vw;
+  }
+
+  .landing-info-tools .tools-list {
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
   }
 }
 
