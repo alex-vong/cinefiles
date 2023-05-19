@@ -6,9 +6,9 @@ const body = document.querySelectorAll('body');
 header.forEach((header) => {
   header.innerHTML = `
       <inner-column>
-        <masthead class="flex-col">
-            <div class="nav-bar">
-                <div>
+        <nav class="flex-col">
+            <section class="masthead nav-bar flex-row">
+                <div class="flex-row">
                     <a href="/index.html">
                         <section class="about-logo flex-row">
                             <span class="fourth-level-heading main">C</span>
@@ -28,18 +28,18 @@ header.forEach((header) => {
                         <a href="" class="fw-500 imdb">Top IMDB</a>
                     </nav-links>
                 </div>
-                <div class="icons">
+
+                <div class="icons flex-row">
                     <i class="fa-solid fa-magnifying-glass search-dd"></i>
                     <i class="fa-solid fa-bars burger-menu"></i>
                     <div class="login">
                         <a href="" class="body-copy login-icon"><i class="fa-regular fa-circle-user"></i></a>
                     </div>
                 </div>
-              </div>
-            </div>
+            </section>
 
-        <nav-bar class="nav-search slide-out">
-            <nav-inputs>
+        <section class="drop-down nav-search flex-row">
+            <nav-inputs class="flex-row">
                     <div class="container">
                       <form id="search-form" action="/search.html" class="search-form flex-col gap-10">
                         <div class="search-flex flex-row gap-10">
@@ -58,8 +58,8 @@ header.forEach((header) => {
                     </div>
                   
             </nav-inputs>
-        </nav-bar>
-        </masthead>
+        </section>
+        </nav>
 
     </inner-column>
   
