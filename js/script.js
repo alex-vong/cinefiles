@@ -6,7 +6,7 @@ const form = document.getElementById('#search-form'),
   landingContainer = document.querySelector('.landing-container'),
   dropDown = document.querySelector('.search-dd'),
   navSearch = document.querySelector('.nav-search'),
-  closeSearch = document.querySelector('i.close-search'),
+  closeSearch = document.querySelector('.fa-circle-xmark.close-search'),
   homeBtn = document.querySelector('a.home'),
   aboutBtn = document.querySelector('a.about-btn'),
   topIMDBBtn = document.querySelector('a.imdb'),
@@ -14,6 +14,7 @@ const form = document.getElementById('#search-form'),
   loginBtn = document.querySelector('.login-icon'),
   closeAbtBtn = document.querySelector('.about-close-btn'),
   scrollToTopBtn = document.querySelector('.scroll-to-top'),
+  goBackBtn = document.querySelector('.goBack'),
   gridContainer = document.querySelector('.show-grid-container'),
   searchBarIcon = document.querySelector('.search-bar-icon'),
   nowPlaying = document.getElementById('now-playing'),
@@ -36,7 +37,21 @@ const API_KEY = 'ea38f315243a154fd347ea9eeb849656';
 const API_URL = 'https://api.themoviedb.org/3';
 
 //opens dropdown search bar on mobile and tablet
-function dropDownSearch() {}
+function dropDownSearch() {
+  if (navSearch.style.maxHeight) {
+    navSearch.style.maxHeight = null;
+    setTimeout(() => {
+      navSearch.style.opacity = '0';
+    }, 300);
+  } else {
+    navSearch.style.maxHeight = '100px';
+    dropDown.classList.add('active');
+
+    setTimeout(() => {
+      navSearch.style.opacity = '1';
+    }, 300);
+  }
+}
 
 //closes dropdown
 function closeDropDownSearch() {
@@ -44,21 +59,24 @@ function closeDropDownSearch() {
 
   navSearch.style.maxHeight = null;
   dropDown.classList.remove('active');
+  searchBarIcon.style.display = 'none';
 
   setTimeout(() => {
     searchBarIcon.style.display = 'none';
   }, 300);
 }
 
+function expandAboutSection(e) {
+  e.preventDefault();
+  landingContainer.style.maxHeight = landingContainer.style.maxHeight
+    ? null
+    : landingContainer.scrollHeight + 'px';
+  updateNavActiveState();
+}
+
 function wordsToString(words) {
   return words.join(', ');
 }
-
-// async function getAllGenre() {
-//   const { genres } = await fetchAPIData('genre/movie/list');
-//   // console.log(movie);
-//   // console.log(genres);
-// }
 
 function generateGenre(genre) {
   var genreList = [
@@ -169,7 +187,6 @@ async function displaySliderTV() {
 
   results.splice(-5);
 
-  console.log(results);
   document.querySelector('.swiper-wrapper').innerHTML = '';
 
   results.forEach((show) => {
@@ -271,15 +288,6 @@ setBackground(); // Call on page load
 
 window.addEventListener('resize', setBackground);
 
-//shuffles returning array of results
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-
 //displays trending movies and tv shows
 async function displayTrending(type) {
   let { results } = await fetchAPIData(`/trending/${type}/week`);
@@ -303,9 +311,6 @@ async function displayTrending(type) {
 //displays popular movies
 async function displayPopular(type) {
   const { results } = await fetchAPIData(`${type}/popular`);
-  // const shuffle = shuffleArray(results);
-  console.log(results);
-
   results.splice(-8);
 
   popularList.innerHTML = '';
@@ -340,8 +345,6 @@ async function displayUpcoming(type) {
 //displays latest releases for tv shows
 async function displayLatestReleases(type) {
   const { results } = await fetchPopData(`discover/${type}`);
-
-  console.log(results);
 
   results.splice(-8);
   popularList.innerHTML = '';
@@ -836,33 +839,19 @@ async function fetchSearchContent(endpoint, query) {
   return data;
 }
 
+function updateNavActiveState() {
+  if (homeBtn.classList.contains('active')) {
+    homeBtn.classList.remove('active');
+  }
+  if (topIMDBBtn.classList.contains('active')) {
+    topIMDBBtn.classList.remove('active');
+  }
+
+  aboutBtn.classList.add('active');
+}
+
 function init() {
   //   Event Listeners
-
-  searchBarIcon.style.display = 'none';
-  // dropDown.addEventListener('click', dropDownSearch);
-  dropDown.addEventListener('click', () => {
-    // navSearch.style.maxHeight = navSearch.style.maxHeight ? null : '100px';
-
-    if (navSearch.style.maxHeight) {
-      navSearch.style.maxHeight = null;
-      dropDown.classList.remove('active');
-
-      setTimeout(() => {
-        searchBarIcon.style.display = 'none';
-      }, 300);
-    } else {
-      navSearch.style.maxHeight = '100px';
-
-      dropDown.classList.add('active');
-
-      setTimeout(() => {
-        searchBarIcon.style.display = 'block';
-      }, 200);
-    }
-  });
-
-  closeSearch.addEventListener('click', closeDropDownSearch);
 
   if (globalState === '/index.html' || globalState === '/') {
     displaySlider();
@@ -884,33 +873,62 @@ function init() {
     searchForContent();
   }
 
-  aboutBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    landingContainer.style.maxHeight = landingContainer.style.maxHeight
-      ? null
-      : landingContainer.scrollHeight + 'px';
-    updateNavActiveState();
+  searchBarIcon.style.display = 'none';
+
+  dropDown.addEventListener('click', () => {
+    dropDownSearch();
+
+    const navInput = document.querySelector('nav-inputs');
+    navInput.innerHTML = '';
+    navInput.innerHTML = `
+        <div class="container gap-20">
+            <form id="search-form" action="/search.html" class="search-form flex-col gap-10">
+              <div class="search-flex flex-row gap-10">
+                  <input
+                    type="text"
+                    name="search-term"
+                    id="search-input"
+                    placeholder="Search database"
+                    class="fw-500"
+                  />
+                  <i class="fa-solid fa-magnifying-glass search-bar-icon"></i>
+                  <i class="fa-regular fa-circle-user login"></i>
+                  <i class="fa-regular fa-circle-xmark close-search"></i>
+                  </div>
+        </div>
+    `;
   });
+
+  const navInput = document.querySelector('nav-inputs');
+  navInput.addEventListener('click', (e) => {
+    if (e.target.nodeName === 'I') {
+      closeDropDownSearch();
+    }
+  });
+
+  closeSearch.addEventListener('click', closeDropDownSearch);
+
+  aboutBtn.addEventListener('click', expandAboutSection);
 
   if (closeAbtBtn) {
     closeAbtBtn.addEventListener('click', () => {
       landingContainer.style.maxHeight = null;
-      // closeAbtBtn.style.display = 'none';
     });
   }
 
-  function updateNavActiveState() {
-    if (homeBtn.classList.contains('active')) {
-      homeBtn.classList.remove('active');
-    }
-    if (topIMDBBtn.classList.contains('active')) {
-      topIMDBBtn.classList.remove('active');
-    }
+  hamBtn.addEventListener('click', () => {
+    dropDownSearch();
+    const navInput = document.querySelector('nav-inputs');
+    navInput.innerHTML = '';
+    navInput.innerHTML = `
+      <section class="nav-drop-down container quiet-voice flex-row gap-40">
+        <a href="/index.html" class="fw-500 home">Home</a>
+        <a href="" class="about-btn fw-500 about">About</a>
+        <a href="" class="fw-500 imdb">Top IMDB</a>
+      </section>
+    `;
+  });
 
-    aboutBtn.classList.add('active');
-  }
-
-  const goBackBtn = document.querySelector('.goBack');
   if (goBackBtn) {
     goBackBtn.addEventListener('click', () => {
       window.history.back();
@@ -934,5 +952,3 @@ function init() {
 }
 
 document.addEventListener('DOMContentLoaded', init);
-
-console.log(window.scrollY);
