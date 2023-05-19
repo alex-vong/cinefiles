@@ -1,5 +1,7 @@
 const header = document.querySelectorAll('header');
 const footer = document.querySelectorAll('footer');
+const landingAbout = document.querySelectorAll('.landing-container');
+const body = document.querySelectorAll('body');
 
 header.forEach((header) => {
   header.innerHTML = `
@@ -62,6 +64,126 @@ header.forEach((header) => {
     </inner-column>
   
   `;
+});
+
+landingAbout.forEach((landingContainer) => {
+  landingContainer.innerHTML = `
+  
+  <inner-column>
+  <section class="landing-wrapper-about">
+      <a href="/index.html">
+          <section class="about-logo flex-row">
+            <span class="third-level-heading main">C</span>
+            <span class="third-level-heading main">F</span>
+          </section>
+        </a>
+    <h2 class="fourth-level-heading">
+      The Ultimate <span class="primary fw-600">Movie</span> and <span class="primary fw-600">TV</span> Database.
+    </h2>
+
+    <section class="landing-info">
+      <section class="landing-info-welcome">
+        <h4 class="fifth-level-heading">Welcome</h4>
+        <div class="flex-col gap-10">
+          <p class="quiet-voice">
+            Welcome to <span>CineFiles</span>, your ultimate movie and TV
+            database! Our platform is designed to provide you with a
+            comprehensive and user-friendly experience, making it easy to
+            find and explore your favorite movies and television series.
+          </p>
+
+          <p class="quiet-voice">
+            With our extensive library of movies and TV shows, you can
+            look up information about your favorite titles, including cast
+            and crew details, ratings, and reviews. Our search and
+            filtering options allow you to quickly and easily find what
+            you're looking for, so you can spend more time watching and
+            less time searching.
+          </p>
+
+          <p class="quiet-voice">
+            Whether you're a casual viewer or a die-hard fan,
+            <span>CineFiles</span> has something for everyone. From
+            classic films to the latest releases, our database is
+            constantly updated to ensure that you have access to the most
+            accurate and up-to-date information.
+          </p>
+        </div>
+      </section>
+    </section>
+
+    <section class="landing-info-about">
+      <h4 class="fifth-level-heading">About <span>CineFiles</span></h4>
+      <div class="flex-col gap-10">
+        <p class="quiet-voice">
+          <span>CineFiles</span> is a dynamic web application that offers users a comprehensive collection of movies and TV shows through an intuitive and user-friendly interface. Our platform harnesses the power of the <a href="https://www.themoviedb.org/"><span>Movie Database API</span></a>, enabling seamless access to an extensive database of diverse content. Users can easily search for specific titles or explore a wide range of genres, actors, directors, and more. With CineFiles, discovering and staying up-to-date with the latest and greatest movies and TV shows has never been easier.
+        </p>
+
+        <p class="quiet-voice">
+          Our interface was designed using <span>Figma</span> and
+          <span>Affinity Designer</span> to create an intuitive and
+          easy-to-use experience for our users. The site was built using a
+          variety of web development technologies, including
+          <span>HTML</span>, <span>CSS</span>, <span>JavaScript</span>,
+          and <span>PHP</span>, to ensure that the site runs smoothly and
+          efficiently.
+        </p>
+      </div>
+    </section>
+
+    <section class="landing-info-tools">
+      <h4 class="fifth-level-heading"> Tools</h4>
+      <div class="tools-list flex-col gap-20">
+          <div class="design-tools">
+              <h2 class="body-copy primary">Design:</h2>
+              <ul class="flex-col gap-8">
+                <li>- Pen and Paper</li>
+                <li>- Whimsical</li>
+                <li>- Figma</li>
+                <li>- Affinity Designer</li>
+                <li>- Coolors.co</li>
+              </ul>
+          </div>
+          <div class="development-tools">
+              <h2 class="body-copy primary">Development:</h2>
+              <ul class="flex-col gap-8">
+                  <li>- HTML</li>
+                  <li>- CSS</li>
+                  <li>- JavaScript</li>
+                  <li>- Postman</li>
+                  <li>- The Movie Database API</li>
+                  <li>- GitHub</li>
+                  <li>- Tower</li>
+                  <li>- Chrome Developer Tools</li>
+              </ul>
+          </div>
+          <div class="deploy-tools">
+              <h2 class="body-copy primary">Deployment:</h2>
+              <ul class="flex-col gap-8">
+                <li>- Amazon Web Servers</li>
+              </ul>
+          </div>
+      </div>
+    </section>
+
+    <button class="about-close-btn btn"><i class="fa-solid fa-xmark body-copy"></i></button>
+
+  </section>
+</inner-column>
+  
+  
+  
+  
+  `;
+});
+
+body.forEach((body) => {
+  const button = document.createElement('button');
+  button.classList.add('btn', 'scroll-to-top');
+
+  button.innerHTML = `<i class="fa-solid fa-arrow-up body-copy"></i>`;
+
+  body.appendChild(button);
 });
 
 footer.forEach((footer) => {
