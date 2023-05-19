@@ -241,6 +241,14 @@ i.primary,
   border-color: var(--sketch);
 }
 
+.about-close-btn {
+  /* padding: 10px 20px; */
+  padding: 8px 12px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  margin-top: 30px;
+}
+
 .content {
   border: 1px solid var(--primary);
   color: var(--primary);
