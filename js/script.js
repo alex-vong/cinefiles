@@ -3,6 +3,7 @@ const form = document.getElementById('#search-form'),
   ul = document.querySelector('.results-ul'),
   landing = document.querySelector('.landing'),
   searchFeedback = document.querySelector('#search-feedback'),
+  landingContainer = document.querySelector('.landing-container'),
   dropDown = document.querySelector('.search-dd'),
   navSearch = document.querySelector('.nav-search'),
   closeSearch = document.querySelector('i.close-search'),
@@ -11,7 +12,10 @@ const form = document.getElementById('#search-form'),
   topIMDBBtn = document.querySelector('a.imdb'),
   hamBtn = document.querySelector('.burger-menu'),
   loginBtn = document.querySelector('.login-icon'),
+  closeAbtBtn = document.querySelector('.about-close-btn'),
+  scrollToTopBtn = document.querySelector('.scroll-to-top'),
   gridContainer = document.querySelector('.show-grid-container'),
+  searchBarIcon = document.querySelector('.search-bar-icon'),
   nowPlaying = document.getElementById('now-playing'),
   trendingList = document.querySelector('.trending-ul'),
   popularList = document.querySelector('.popular-ul'),
@@ -32,48 +36,18 @@ const API_KEY = 'ea38f315243a154fd347ea9eeb849656';
 const API_URL = 'https://api.themoviedb.org/3';
 
 //opens dropdown search bar on mobile and tablet
-function dropDownSearch() {
-  console.log(navSearch.classList);
-  navSearch.classList.remove('slide-out');
-  navSearch.classList.add('slide-in');
-  navSearch.style.zIndex = '-1000';
-
-  dropDown.classList.add('active');
-
-  setTimeout(() => {
-    navSearch.style.zIndex = '0';
-  }, 1000);
-
-  if (nowPlaying) {
-    nowPlaying.style.marginTop = '80px';
-  }
-
-  if (searchResults) {
-    searchResults.style.marginTop = '80px';
-  }
-}
+function dropDownSearch() {}
 
 //closes dropdown
 function closeDropDownSearch() {
   console.log('works');
-  if (window.innerWidth < 1000) {
-    navSearch.style.zIndex = '-1000';
-  }
 
+  navSearch.style.maxHeight = null;
   dropDown.classList.remove('active');
 
-  if (nowPlaying) {
-    nowPlaying.style.marginTop = '0';
-  }
-
-  if (searchResults) {
-    searchResults.style.marginTop = '0';
-  }
-
-  navSearch.classList.remove('slide-in');
-  navSearch.classList.add('slide-out');
-
-  // navSearch.style.animationDuration = '0.3s';
+  setTimeout(() => {
+    searchBarIcon.style.display = 'none';
+  }, 300);
 }
 
 function wordsToString(words) {
@@ -864,7 +838,30 @@ async function fetchSearchContent(endpoint, query) {
 
 function init() {
   //   Event Listeners
-  dropDown.addEventListener('click', dropDownSearch);
+
+  searchBarIcon.style.display = 'none';
+  // dropDown.addEventListener('click', dropDownSearch);
+  dropDown.addEventListener('click', () => {
+    // navSearch.style.maxHeight = navSearch.style.maxHeight ? null : '100px';
+
+    if (navSearch.style.maxHeight) {
+      navSearch.style.maxHeight = null;
+      dropDown.classList.remove('active');
+
+      setTimeout(() => {
+        searchBarIcon.style.display = 'none';
+      }, 300);
+    } else {
+      navSearch.style.maxHeight = '100px';
+
+      dropDown.classList.add('active');
+
+      setTimeout(() => {
+        searchBarIcon.style.display = 'block';
+      }, 200);
+    }
+  });
+
   closeSearch.addEventListener('click', closeDropDownSearch);
 
   if (globalState === '/index.html' || globalState === '/') {
@@ -889,10 +886,20 @@ function init() {
 
   aboutBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    const landingContainer = document.querySelector('.landing-container');
+    landingContainer.style.maxHeight = landingContainer.style.maxHeight
+      ? null
+      : landingContainer.scrollHeight + 'px';
+    updateNavActiveState();
+  });
 
-    landingContainer.classList.toggle('show');
+  if (closeAbtBtn) {
+    closeAbtBtn.addEventListener('click', () => {
+      landingContainer.style.maxHeight = null;
+      // closeAbtBtn.style.display = 'none';
+    });
+  }
 
+  function updateNavActiveState() {
     if (homeBtn.classList.contains('active')) {
       homeBtn.classList.remove('active');
     }
@@ -901,12 +908,7 @@ function init() {
     }
 
     aboutBtn.classList.add('active');
-
-    if (!landingContainer.classList.contains('show')) {
-      aboutBtn.classList.remove('active');
-      homeBtn.classList.add('active');
-    }
-  });
+  }
 
   const goBackBtn = document.querySelector('.goBack');
   if (goBackBtn) {
@@ -914,8 +916,23 @@ function init() {
       window.history.back();
     });
   }
+
+  scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  });
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      scrollToTopBtn.classList.add('show');
+    } else {
+      scrollToTopBtn.classList.remove('show');
+    }
+  });
 }
 
-console.log(globalState);
-
 document.addEventListener('DOMContentLoaded', init);
+
+console.log(window.scrollY);
