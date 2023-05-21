@@ -34,6 +34,8 @@ const form = document.getElementById('#search-form'),
     totalResults: 0,
   };
 
+let hamAbout;
+
 const API_KEY = 'ea38f315243a154fd347ea9eeb849656';
 const API_URL = 'https://api.themoviedb.org/3';
 
@@ -41,12 +43,14 @@ const API_URL = 'https://api.themoviedb.org/3';
 function dropDownSearch() {
   if (navSearch.style.maxHeight) {
     navSearch.style.maxHeight = null;
+    dropDown.classList.remove('active');
+    hamBtn.classList.remove('active');
+
     setTimeout(() => {
       navSearch.style.opacity = '0';
     }, 300);
   } else {
     navSearch.style.maxHeight = '100px';
-    dropDown.classList.add('active');
 
     setTimeout(() => {
       navSearch.style.opacity = '1';
@@ -63,16 +67,27 @@ function closeDropDownSearch() {
   searchBarIcon.style.display = 'none';
 
   setTimeout(() => {
-    searchBarIcon.style.display = 'none';
+    navSearch.style.opacity = '0';
   }, 300);
 }
 
 function expandAboutSection(e) {
   e.preventDefault();
-  landingContainer.style.maxHeight = landingContainer.style.maxHeight
-    ? null
-    : landingContainer.scrollHeight + 'px';
+  // landingContainer.style.maxHeight = landingContainer.style.maxHeight
+  //   ? null
+  //   : landingContainer.scrollHeight + 'px';
+
+  if (landingContainer.style.maxHeight) {
+    landingContainer.style.maxHeight = null;
+    hamAbout.classList.remove('active');
+  } else {
+    landingContainer.style.maxHeight = landingContainer.scrollHeight + 'px';
+    hamAbout.classList.add('active');
+  }
+
   updateNavActiveState();
+
+  // hamBtn.classList.contains('active') ? hamAbout.classList.add('active') : null;
 }
 
 function wordsToString(words) {
@@ -127,6 +142,7 @@ async function displaySlider() {
   }
 
   const { results } = await fetchAPIData(`movie/now_playing`);
+  console.log(results);
 
   document.querySelector('.swiper-wrapper').innerHTML = '';
 
@@ -851,6 +867,43 @@ function updateNavActiveState() {
   aboutBtn.classList.add('active');
 }
 
+function generateSearchDropDownContent() {
+  navInput.innerHTML = `
+    <div class="container gap-20">
+        <form id="search-form" action="/search.html" class="search-form flex-col gap-10">
+          <div class="search-flex flex-row gap-10">
+              <input
+                type="text"
+                name="search-term"
+                id="search-input"
+                placeholder="Search database"
+                class="fw-500"
+              />
+              <i class="fa-solid fa-magnifying-glass search-bar-icon"></i>
+              <i class="fa-regular fa-circle-user login"></i>
+              <i class="fa-regular fa-circle-xmark close-search"></i>
+              </div>
+    </div>
+  `;
+}
+
+function generateHamburgerDropDownContent() {
+  navInput.innerHTML = `
+    <section class="nav-drop-down container quiet-voice flex-row gap-40">
+      <a href="/index.html" class="fw-500 home">Home</a>
+      <a href="" class="about-btn fw-500 about">About</a>
+      <a href="" class="fw-500 imdb">Top IMDB</a>
+    </section>
+    `;
+}
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+}
+
 function init() {
   //   Event Listeners
 
@@ -877,30 +930,18 @@ function init() {
   searchBarIcon.style.display = 'none';
 
   dropDown.addEventListener('click', () => {
-    dropDownSearch();
-
-    const navInput = document.querySelector('nav-inputs');
+    dropDown.classList.add('active');
     navInput.innerHTML = '';
-    navInput.innerHTML = `
-        <div class="container gap-20">
-            <form id="search-form" action="/search.html" class="search-form flex-col gap-10">
-              <div class="search-flex flex-row gap-10">
-                  <input
-                    type="text"
-                    name="search-term"
-                    id="search-input"
-                    placeholder="Search database"
-                    class="fw-500"
-                  />
-                  <i class="fa-solid fa-magnifying-glass search-bar-icon"></i>
-                  <i class="fa-regular fa-circle-user login"></i>
-                  <i class="fa-regular fa-circle-xmark close-search"></i>
-                  </div>
-        </div>
-    `;
+
+    if (hamBtn.classList.contains('active')) {
+      generateSearchDropDownContent();
+      hamBtn.classList.remove('active');
+    } else {
+      dropDownSearch();
+      generateSearchDropDownContent();
+    }
   });
 
-  const navInput = document.querySelector('nav-inputs');
   navInput.addEventListener('click', (e) => {
     if (e.target.nodeName === 'I') {
       closeDropDownSearch();
@@ -914,20 +955,14 @@ function init() {
   if (closeAbtBtn) {
     closeAbtBtn.addEventListener('click', () => {
       landingContainer.style.maxHeight = null;
+      hamAbout.classList.remove('active');
+      scrollToTop();
     });
   }
 
   hamBtn.addEventListener('click', () => {
-    dropDownSearch();
-    const navInput = document.querySelector('nav-inputs');
+    hamBtn.classList.add('active');
     navInput.innerHTML = '';
-    navInput.innerHTML = `
-      <section class="nav-drop-down container quiet-voice flex-row gap-40">
-        <a href="/index.html" class="fw-500 home">Home</a>
-        <a href="" class="about-btn fw-500 about">About</a>
-        <a href="" class="fw-500 imdb">Top IMDB</a>
-      </section>
-    `;
 
     // aboutBtn.addEventListener('click', expandAboutSection);
 
@@ -951,12 +986,7 @@ function init() {
     });
   }
 
-  scrollToTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  });
+  scrollToTopBtn.addEventListener('click', scrollToTop);
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > 400) {
