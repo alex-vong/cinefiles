@@ -928,6 +928,21 @@ function init() {
         <a href="" class="fw-500 imdb">Top IMDB</a>
       </section>
     `;
+
+    // aboutBtn.addEventListener('click', expandAboutSection);
+
+    if (dropDown.classList.contains('active')) {
+      generateHamburgerDropDownContent();
+      dropDown.classList.remove('active');
+    } else {
+      dropDownSearch();
+      generateHamburgerDropDownContent();
+    }
+
+    hamAbout = document.querySelector('.nav-drop-down .about-btn');
+    console.log(hamAbout);
+
+    hamAbout.addEventListener('click', expandAboutSection);
   });
 
   if (goBackBtn) {
