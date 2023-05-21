@@ -69,8 +69,9 @@ nav nav-inputs,
 nav nav-inputs {
   justify-content: center;
 }
+
 nav nav-inputs .container {
-  padding-bottom: 24px;
+  padding: 12px 0 24px;
 }
 
 nav nav-inputs i {
