@@ -6,7 +6,6 @@ const form = document.getElementById('#search-form'),
   landingContainer = document.querySelector('.landing-container'),
   dropDown = document.querySelector('.search-dd'),
   navSearch = document.querySelector('.nav-search'),
-  closeSearch = document.querySelector('.fa-circle-xmark.close-search'),
   closeSearch = document.querySelector('.close-search'),
   homeBtn = document.querySelector('a.home'),
   aboutBtn = document.querySelector('a.about-btn'),
@@ -36,6 +35,8 @@ const form = document.getElementById('#search-form'),
   };
 
 let hamAbout;
+
+console.log(closeSearch);
 
 const API_KEY = 'ea38f315243a154fd347ea9eeb849656';
 const API_URL = 'https://api.themoviedb.org/3';
@@ -143,7 +144,7 @@ async function displaySlider() {
   }
 
   const { results } = await fetchAPIData(`movie/now_playing`);
-  console.log(results);
+  // console.log(results);
 
   document.querySelector('.swiper-wrapper').innerHTML = '';
 
@@ -944,9 +945,16 @@ function init() {
   });
 
   navInput.addEventListener('click', (e) => {
-    if (e.target.nodeName === 'I') {
+    console.log(e);
+    if (e.target.classList.contains('close-search')) {
       closeDropDownSearch();
+      console.log('contains close search');
     }
+  });
+
+  const searchFlex = document.querySelector('.search-flex');
+  searchFlex.addEventListener('click', (e) => {
+    console.log(e.target);
   });
 
   closeSearch.addEventListener('click', closeDropDownSearch);
