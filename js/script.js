@@ -1035,13 +1035,13 @@ function init() {
     checkWindowSize();
   }
 
-  if (globalState === 'modules/cinefiles/movie-details.html') {
+  if (globalState === '/modules/cinefiles/movie-details.html') {
     displayContentDetails('movie');
   }
-  if (globalState === 'modules/cinefiles/tv-details.html') {
+  if (globalState === '/modules/cinefiles/tv-details.html') {
     displayContentDetails('tv');
   }
-  if (globalState === 'modules/cinefiles/search.html') {
+  if (globalState === '/modules/cinefiles/search.html') {
     searchForContent();
   }
 
