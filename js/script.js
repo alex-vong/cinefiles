@@ -610,10 +610,10 @@ function generateCard(content) {
   li.classList.add('card');
 
   li.innerHTML = `
-            <a href="/${
+            <a href="${
               content.media_type === 'movie' || content.original_title
-                ? 'movie-details.html'
-                : 'tv-details.html'
+                ? '/modules/cinefiles/movie-details.html'
+                : '/modules/cinefiles/tv-details.html'
             }?id=${content.id}">
                <picture>
                ${
