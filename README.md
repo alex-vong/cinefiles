@@ -33,13 +33,13 @@ The website was built using the following technologies and libraries:
 
 ## Live Demo
 
-Check out the live demo of **CineFile [here](https://your-demo-link.com)**.
+Check out the live demo of **CineFile [here](https://alexvong.dec/modules/cinefiles)**.
 
 ## Installation
 
 To run the website locally, follow these steps:
 
-1. **Clone the repository**: `git clone https://github.com/your-username/cinefile.git`
+1. **Clone the repository**: `git clone https://github.com/c0debrew-sky/cinefiles`
 2. **Navigate to the project directory**: `cd cinefile`
 3. Open the **`index.html`** file in your web browser.
 
