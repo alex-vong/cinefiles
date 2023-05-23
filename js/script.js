@@ -696,7 +696,7 @@ function generateSearchResultsGrid(results) {
 function generateSearchDropDownContent() {
   navInput.innerHTML = `
     <div class="container gap-20">
-        <form id="search-form" action="/search.html" class="search-form flex-col gap-10">
+        <form id="search-form" action="/modules/cinefiles/search.html" class="search-form flex-col gap-10">
           <div class="search-flex flex-row gap-10">
               <input
                 type="text"
@@ -1053,6 +1053,7 @@ function init() {
     globalState === '/search.html'
   ) {
     searchForContent();
+    console.log('works from search');
   }
 
   searchBarIcon.style.display = 'none';
