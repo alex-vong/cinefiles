@@ -13,11 +13,9 @@ const form = document.getElementById('#search-form'),
   topIMDBBtn = document.querySelector('a.imdb'),
   navInput = document.querySelector('nav-inputs'),
   hamBtn = document.querySelector('.burger-menu'),
-  loginBtn = document.querySelector('.login-icon'),
   loginBtn = document.querySelector('i.login'),
   closeAbtBtn = document.querySelector('.about-close-btn'),
   scrollToTopBtn = document.querySelector('.scroll-to-top'),
-  goBackBtn = document.querySelector('.goBack'),
   gridContainer = document.querySelector('.show-grid-container'),
   searchBarIcon = document.querySelector('.search-bar-icon'),
   nowPlaying = document.getElementById('now-playing'),
@@ -38,122 +36,8 @@ const form = document.getElementById('#search-form'),
 
 let hamAbout;
 
-console.log(closeSearch);
-
 const API_KEY = 'ea38f315243a154fd347ea9eeb849656';
 const API_URL = 'https://api.themoviedb.org/3';
-
-//opens dropdown search bar on mobile and tablet
-function dropDownSearch() {
-  if (navSearch.style.maxHeight) {
-    navSearch.style.maxHeight = null;
-    dropDown.classList.remove('active');
-    hamBtn.classList.remove('active');
-
-    setTimeout(() => {
-      navSearch.style.opacity = '0';
-    }, 300);
-  } else {
-    navSearch.style.maxHeight = '100px';
-
-    setTimeout(() => {
-      navSearch.style.opacity = '1';
-    }, 300);
-  }
-}
-
-//closes dropdown
-function closeDropDownSearch() {
-  console.log('works');
-
-  navSearch.style.maxHeight = null;
-  dropDown.classList.remove('active');
-  searchBarIcon.style.display = 'none';
-
-  setTimeout(() => {
-    navSearch.style.opacity = '0';
-  }, 300);
-}
-
-function expandAboutSection(e) {
-  e.preventDefault();
-  // landingContainer.style.maxHeight = landingContainer.style.maxHeight
-  //   ? null
-  //   : landingContainer.scrollHeight + 'px';
-
-  if (landingContainer.style.maxHeight) {
-    landingContainer.style.maxHeight = null;
-    hamAbout.classList.remove('active');
-  } else {
-    landingContainer.style.maxHeight = landingContainer.scrollHeight + 'px';
-    hamAbout.classList.add('active');
-  }
-
-  updateNavActiveState();
-}
-
-function expandSignIn() {
-  console.log(loginBtn);
-
-  const btn = document.querySelector('.nav-search i.login');
-  console.log(btn);
-
-  if (modalContainer.style.maxHeight) {
-    modalContainer.style.maxHeight = null;
-    btn.classList.remove('active');
-  } else {
-    modalContainer.style.maxHeight = modalContainer.scrollHeight + 'px';
-  }
-
-  console.log('login button clicked');
-
-  const closeSignInBtn = document.querySelector('.modal-close-btn');
-
-  // hamBtn.classList.contains('active') ? hamAbout.classList.add('active') : null;
-}
-
-function wordsToString(words) {
-  return words.join(', ');
-}
-
-function generateGenre(genre) {
-  var genreList = [
-    { id: 28, name: 'Action' },
-    { id: 12, name: 'Adventure' },
-    { id: 16, name: 'Animation' },
-    { id: 35, name: 'Comedy' },
-    { id: 80, name: 'Crime' },
-    { id: 99, name: 'Documentary' },
-    { id: 18, name: 'Drama' },
-    { id: 10751, name: 'Family' },
-    { id: 14, name: 'Fantasy' },
-    { id: 36, name: 'History' },
-    { id: 27, name: 'Horror' },
-    { id: 10402, name: 'Music' },
-    { id: 9648, name: 'Mystery' },
-    { id: 10749, name: 'Romance' },
-    { id: 878, name: 'Science Fiction' },
-    { id: 10770, name: 'TV Movie' },
-    { id: 53, name: 'Thriller' },
-    { id: 10752, name: 'War' },
-    { id: 37, name: 'Western' },
-  ];
-
-  var matchingObjects = genreList.filter(function (obj) {
-    return genre.includes(obj.id);
-  });
-
-  // Extract the names from the matchingObjects array
-  var matchingNames = matchingObjects.map(function (obj) {
-    return obj.name;
-  });
-
-  // console.log(matchingNames);
-  let string = wordsToString(matchingNames);
-
-  // console.log(string);
-  return string;
-}
 
 //swiper
 async function displaySlider() {
@@ -184,25 +68,12 @@ async function displaySlider() {
     div.innerHTML = `
       <div class="overlay"></div>
       <picture>
-      <img src="https://image.tmdb.org/t/p/original/${
-        window.innerWidth >= 768 ? movie.backdrop_path : movie.poster_path
-      }" alt="">
         <img src="https://image.tmdb.org/t/p/original/${
           window.innerWidth >= 768 ? movie.backdrop_path : movie.poster_path
         }" alt="backdrop for ${movie.title}">
      
-  </picture>
+      </picture>
   
-  <div class="swiper-details flex-col gap-10">
-      <inner-column class="flex-col gap-10">
-      <h3 class="third-level-heading">${movie.title}</h3>
-      <div class="swiper-info info flex-row gap-15 flex-wrap">
-      <p class="whisper"><span>Duration:</span>${releaseYear}</p>
-      <p class="swiper-rating whisper"><span>IMDB:</span><i class="fas fa-star whisper"></i> ${rating}</p>
-      <p class="whisper genre fw-600">
-          <span class="genre">Genre:</span>
-          ${genreList}
-      </p>
       <div class="swiper-details flex-col gap-10">
           <inner-column class="flex-col gap-10">
           <h3 class="third-level-heading">${movie.title}</h3>
@@ -225,18 +96,6 @@ async function displaySlider() {
           </inner-column>
       
       </div>
-  
-      <p class="quiet-voice over-view">
-      ${movie.overview}
-      </p>
-  
-      <button class="quiet-voice btn"> 
-          <a href="/movie-details.html?id=${movie.id}"> View More Info
-          </a>
-      </button>
-      </inner-column>
-  
-  </div>
       `;
 
     document.querySelector('.swiper-wrapper').appendChild(div);
@@ -333,23 +192,27 @@ function initSwiper() {
   });
 }
 
-function setBackground() {
-  var viewportWidth = window.innerWidth;
-
-  if (viewportWidth === 768) {
-    displaySlider();
-    console.log('at 768');
+function checkWindowSize() {
+  function onWindowResize() {
+    const windowWidth =
+      window.innerWidth || document.documentElement.clientWidth;
+    if (windowWidth > 768 && windowWidth < 800) {
+      displaySlider();
+      updateUI();
+    } else if (windowWidth > 320 && windowWidth < 500) {
+      displaySlider();
+    }
   }
 
-  if (viewportWidth === 400) {
-    console.log('at 400');
-    displaySlider();
-  }
+  // Initial check on page load
+  onWindowResize();
+
+  // Check window size on window resize
+  window.addEventListener('resize', onWindowResize);
 }
 
-setBackground(); // Call on page load
-
-window.addEventListener('resize', setBackground);
+// Call the checkWindowSize function to start monitoring the window size
+checkWindowSize();
 
 //displays trending movies and tv shows
 async function displayTrending(type) {
@@ -467,6 +330,12 @@ async function displayContentDetails(type) {
 
     const button = document.querySelector('.return-links');
     button.prepend(goBackBtn);
+
+    if (goBackBtn) {
+      goBackBtn.addEventListener('click', () => {
+        window.history.back();
+      });
+    }
   }
 
   if (type === 'movie') {
@@ -630,6 +499,182 @@ async function getCredits(type, content) {
   });
 }
 
+// search movies/shows
+
+async function searchForContent() {
+  const queryString = window.location.search;
+
+  if (queryString === '') {
+    document.querySelector('.search-heading').innerHTML = `
+    This is the <span class="primary">Search Page</span>. You can search movie or television programs here. `;
+  } else {
+    const urlParams = new URLSearchParams(queryString);
+
+    searchPage.term = urlParams.get('search-term');
+
+    const query = searchPage.term;
+    console.log(query);
+
+    let { results, total_pages, page, total_results } =
+      await fetchSearchContent('search/multi', query);
+
+    searchPage.page = page;
+    searchPage.totalPages = total_pages;
+    searchPage.totalResults = total_results;
+
+    generateSearchResultsGrid(results, total_results);
+  }
+
+  displaySearchPagination('search/multi');
+}
+
+//fetch data from tvdb api
+
+async function fetchAPIData(endpoint) {
+  const res = await fetch(
+    `${API_URL}/${endpoint}?api_key=${API_KEY}&language=en-US&region=US`
+  );
+
+  const data = await res.json();
+  // console.log(data);
+  return data;
+}
+
+async function fetchPopData(endpoint) {
+  const res = await fetch(
+    `${API_URL}/${endpoint}?api_key=${API_KEY}&sort_by=latest_release.desc&first_air_date.gte=2023-01-01&with_watch_providers=8&watch_region=US`
+  );
+
+  const data = await res.json();
+  // console.log(data);
+
+  return data;
+}
+async function fetchSearchContent(endpoint, query) {
+  const res = await fetch(
+    `${API_URL}/${endpoint}?api_key=${API_KEY}&query=${query}&page=${searchPage.page}&region=US&include_adult=false`
+  );
+
+  const data = await res.json();
+  // console.log(data);
+
+  return data;
+}
+
+//opens dropdown search bar on mobile and tablet
+function dropDownSearch() {
+  if (navSearch.style.maxHeight) {
+    navSearch.style.maxHeight = null;
+    dropDown.classList.remove('active');
+    hamBtn.classList.remove('active');
+
+    setTimeout(() => {
+      navSearch.style.opacity = '0';
+    }, 300);
+  } else {
+    navSearch.style.maxHeight = '100px';
+
+    setTimeout(() => {
+      navSearch.style.opacity = '1';
+    }, 300);
+  }
+}
+
+//closes dropdown
+function closeDropDownSearch() {
+  navSearch.style.maxHeight = null;
+  dropDown.classList.remove('active');
+  searchBarIcon.style.display = 'none';
+
+  setTimeout(() => {
+    navSearch.style.opacity = '0';
+  }, 300);
+}
+
+function expandAboutSection(e) {
+  e.preventDefault();
+
+  // const about = document.querySelector('.about');
+
+  if (landingContainer.style.maxHeight) {
+    landingContainer.style.maxHeight = null;
+    hamAbout ? hamAbout.classList.remove('active') : null;
+    aboutBtn.classList.remove('active');
+  } else {
+    landingContainer.style.maxHeight = landingContainer.scrollHeight + 'px';
+    hamAbout ? hamAbout.classList.add('active') : null;
+    aboutBtn.classList.add('active');
+  }
+
+  updateNavActiveState();
+}
+
+function expandSignIn() {
+  console.log(loginBtn);
+
+  const btn = document.querySelector('.nav-search i.login');
+  console.log(btn);
+
+  if (modalContainer.style.maxHeight) {
+    modalContainer.style.maxHeight = null;
+    btn.classList.remove('active');
+  } else {
+    modalContainer.style.maxHeight = modalContainer.scrollHeight + 'px';
+  }
+
+  console.log('login button clicked');
+
+  const closeSignInBtn = document.querySelector('.modal-close-btn');
+
+  closeSignInBtn.addEventListener('click', () => {
+    modalContainer.style.maxHeight = null;
+    btn.classList.remove('active');
+  });
+}
+
+function wordsToString(words) {
+  return words.join(', ');
+}
+
+function generateGenre(genre) {
+  var genreList = [
+    { id: 28, name: 'Action' },
+    { id: 12, name: 'Adventure' },
+    { id: 16, name: 'Animation' },
+    { id: 35, name: 'Comedy' },
+    { id: 80, name: 'Crime' },
+    { id: 99, name: 'Documentary' },
+    { id: 18, name: 'Drama' },
+    { id: 10751, name: 'Family' },
+    { id: 14, name: 'Fantasy' },
+    { id: 36, name: 'History' },
+    { id: 27, name: 'Horror' },
+    { id: 10402, name: 'Music' },
+    { id: 9648, name: 'Mystery' },
+    { id: 10749, name: 'Romance' },
+    { id: 878, name: 'Science Fiction' },
+    { id: 10770, name: 'TV Movie' },
+    { id: 53, name: 'Thriller' },
+    { id: 10752, name: 'War' },
+    { id: 37, name: 'Western' },
+  ];
+
+  var matchingObjects = genreList.filter(function (obj) {
+    return genre.includes(obj.id);
+  });
+
+  // Extract the names from the matchingObjects array
+  var matchingNames = matchingObjects.map(function (obj) {
+    return obj.name;
+  });
+
+  // console.log(matchingNames);
+  let string = wordsToString(matchingNames);
+
+  // console.log(string);
+  return string;
+}
+
 function generateDetailsInfo(type, content) {
   if (type === 'movie') {
     const boxOffice = convertBoxOffice(content.revenue);
@@ -730,9 +775,11 @@ function generateCard(content) {
                     ? content.release_date.slice(0, 4)
                     : content.first_air_date.slice(0, 4)
                 }</p>
-                <p class="whisper"><i class="fas fa-star text-primary"></i> ${calculateRating(
-                  content.vote_average
-                )}</p>
+                <p class="whisper"><i class="fas fa-star text-primary"></i> ${
+                  content.vote_average === 0
+                    ? 'No Rating'
+                    : calculateRating(content.vote_average)
+                }</p>
               </div>
               <div>
                 <p class="whisper content"> ${
@@ -753,35 +800,6 @@ function generateCard(content) {
 function calculateRating(rating) {
   let roundedUpRating = Math.ceil(rating * 10) / 10;
   return roundedUpRating.toFixed(1);
-}
-
-// search movies/shows
-
-async function searchForContent() {
-  const queryString = window.location.search;
-
-  if (queryString === '') {
-    document.querySelector('.search-heading').innerHTML = `
-    This is the <span class="primary">Search Page</span>. You can search movie or television programs here. `;
-  } else {
-    const urlParams = new URLSearchParams(queryString);
-
-    searchPage.term = urlParams.get('search-term');
-
-    const query = searchPage.term;
-    console.log(query);
-
-    let { results, total_pages, page, total_results } =
-      await fetchSearchContent('search/multi', query);
-
-    searchPage.page = page;
-    searchPage.totalPages = total_pages;
-    searchPage.totalResults = total_results;
-
-    generateSearchResultsGrid(results, total_results);
-  }
-
-  displaySearchPagination('search/multi');
 }
 
 function displaySearchPagination(endpoint) {
@@ -869,39 +887,6 @@ function updateUI() {
   displayTrending('movie');
 }
 
-//fetch data from tvdb api
-
-async function fetchAPIData(endpoint) {
-  const res = await fetch(
-    `${API_URL}/${endpoint}?api_key=${API_KEY}&language=en-US&region=US`
-  );
-
-  const data = await res.json();
-  // console.log(data);
-  return data;
-}
-
-async function fetchPopData(endpoint) {
-  const res = await fetch(
-    `${API_URL}/${endpoint}?api_key=${API_KEY}&sort_by=latest_release.desc&first_air_date.gte=2023-01-01&with_watch_providers=8&watch_region=US`
-  );
-
-  const data = await res.json();
-  // console.log(data);
-
-  return data;
-}
-async function fetchSearchContent(endpoint, query) {
-  const res = await fetch(
-    `${API_URL}/${endpoint}?api_key=${API_KEY}&query=${query}&page=${searchPage.page}&region=US&include_adult=false`
-  );
-
-  const data = await res.json();
-  // console.log(data);
-
-  return data;
-}
-
 function updateNavActiveState() {
   if (homeBtn.classList.contains('active')) {
     homeBtn.classList.remove('active');
@@ -910,7 +895,7 @@ function updateNavActiveState() {
     topIMDBBtn.classList.remove('active');
   }
 
-  aboutBtn.classList.add('active');
+  // aboutBtn.classList.add('active');
 }
 
 function generateSearchDropDownContent() {
@@ -934,6 +919,7 @@ function generateSearchDropDownContent() {
 }
 
 function generateHamburgerDropDownContent() {
+  navSearch.style.display = 'flex';
   navInput.innerHTML = `
     <section class="nav-drop-down container quiet-voice flex-row gap-40">
       <a href="/index.html" class="fw-500 home">Home</a>
@@ -941,6 +927,54 @@ function generateHamburgerDropDownContent() {
       <a href="" class="fw-500 imdb">Top IMDB</a>
     </section>
     `;
+}
+
+function generateSignInContent() {
+  modalContainer.innerHTML = `
+  <div class="modal-container">
+  <inner-column>  
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="fourth-level-heading primary">Welcome Back!</h2>
+        <i class="fa-solid fa-xmark modal-close-btn"></i>
+      </div>
+
+      <div class="modal-body">
+          <form class="flex-col gap-20">
+              <section class="modal-inputs flex-col gap-20">
+                  <div class="email-input flex-col gap-8">
+                      <label for="email">Email Address</label>
+                      <input type="email" id="email" name = "email" autocomplete="email" placeholder="name@email.com" required>
+                  </div>
+                  
+                  <div class="password-input flex-col gap-8">
+                      <label for="password">Password</label>
+
+                      <input type="password" 
+                      id="password"
+                      name="password"
+                      placeholder="Password" 
+                      autocomplete="current-password"
+                      required>
+                  </div>
+              </section>
+          <div class="modal-links flex-row sb">
+              <label class="flex-row gap-5">
+                <input type="checkbox"> 
+                <span>Remember me</span>
+              </label>
+              <a href="" class="primary"> Forgot Password?</a>
+          </div>
+          <button type="submit" class="btn quiet-voice fw-600">Login</button>
+          <p>Don't have an account? <span class="primary">Register</span> </p>
+        </form>
+      </div>
+    </div>
+ 
+  </inner-column>  
+</div>`;
+
+  expandSignIn();
 }
 
 function scrollToTop() {
@@ -992,14 +1026,17 @@ function init() {
     console.log(e);
     if (e.target.classList.contains('close-search')) {
       closeDropDownSearch();
-      console.log('contains close search');
+    }
+    if (e.target.classList.contains('login')) {
+      e.target.classList.add('active');
+      generateSignInContent();
     }
   });
 
-  const searchFlex = document.querySelector('.search-flex');
-  searchFlex.addEventListener('click', (e) => {
-    console.log(e.target);
-  });
+  // const searchFlex = document.querySelector('.search-flex');
+  // searchFlex.addEventListener('click', (e) => {
+  //   console.log(e.target);
+  // });
 
   closeSearch.addEventListener('click', closeDropDownSearch);
 
@@ -1008,7 +1045,8 @@ function init() {
   if (closeAbtBtn) {
     closeAbtBtn.addEventListener('click', () => {
       landingContainer.style.maxHeight = null;
-      hamAbout.classList.remove('active');
+      hamAbout ? hamAbout.classList.remove('active') : null;
+      aboutBtn ? aboutBtn.classList.remove('active') : null;
       scrollToTop();
     });
   }
@@ -1016,9 +1054,6 @@ function init() {
   hamBtn.addEventListener('click', () => {
     hamBtn.classList.add('active');
     navInput.innerHTML = '';
-
-    // aboutBtn.addEventListener('click', expandAboutSection);
-
     if (dropDown.classList.contains('active')) {
       generateHamburgerDropDownContent();
       dropDown.classList.remove('active');
@@ -1028,16 +1063,11 @@ function init() {
     }
 
     hamAbout = document.querySelector('.nav-drop-down .about-btn');
-    console.log(hamAbout);
 
     hamAbout.addEventListener('click', expandAboutSection);
   });
 
-  if (goBackBtn) {
-    goBackBtn.addEventListener('click', () => {
-      window.history.back();
-    });
-  }
+  loginBtn.addEventListener('click', generateSignInContent);
 
   scrollToTopBtn.addEventListener('click', scrollToTop);
 
