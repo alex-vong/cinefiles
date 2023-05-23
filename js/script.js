@@ -200,6 +200,27 @@ async function displaySlider() {
           <span class="genre">Genre:</span>
           ${genreList}
       </p>
+      <div class="swiper-details flex-col gap-10">
+          <inner-column class="flex-col gap-10">
+          <h3 class="third-level-heading">${movie.title}</h3>
+          <div class="swiper-info info flex-row gap-15 flex-wrap">
+            <p class="whisper"><span>Duration:</span>${releaseYear}</p>
+            <p class="swiper-rating whisper"><span>IMDB:</span><i class="fas fa-star whisper"></i> ${rating}</p>
+            <p class="whisper genre fw-600">
+                <span class="genre">Genre:</span>
+                ${genreList}
+            </p>
+          </div>
+          <p class="quiet-voice over-view">
+          ${movie.overview}
+          </p>
+      
+          <button class="quiet-voice btn"> 
+              <a href="/movie-details.html?id=${movie.id}"> View More Info
+              </a>
+          </button>
+          </inner-column>
+      
       </div>
   
       <p class="quiet-voice over-view">
