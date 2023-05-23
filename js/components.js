@@ -29,11 +29,11 @@ header.forEach((header) => {
                     </nav-links>
                 </div>
 
-                <div class="icons flex-row">
+                <div class="icons flex-row body-copy">
                     <i class="fa-solid fa-magnifying-glass search-dd"></i>
                     <i class="fa-solid fa-bars burger-menu"></i>
                     <div class="login">
-                        <a href="" class="body-copy login-icon"><i class="fa-regular fa-circle-user"></i></a>
+                        <i class="fa-regular fa-circle-user login"></i>
                     </div>
                 </div>
             </section>
