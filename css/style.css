@@ -161,16 +161,7 @@ picture.logo img {
   margin: 0 auto;
 }
 
-/* about container */
-
-.landing-container {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.75s ease-in-out;
-}
-
 /* swiper stuff */
-
 #now-playing,
 #search-results-wrapper {
   transition: 0.3s ease-in-out;
@@ -188,26 +179,36 @@ picture.logo img {
 }
 
 /* landing about page */
+
+.landing-container {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.75s ease-in-out;
+}
+
 .landing-container span:not(.about-logo span, h2 span) {
   color: var(--primary);
   font-weight: 500;
 }
 
-.landing-wrapper-about {
+.landing-container .about-landing-wrapper {
   display: flex;
   flex-direction: column;
   gap: 20px;
   align-items: center;
   max-width: 600px;
-  margin: 100px auto;
+  margin: 50px auto;
   padding-bottom: 50px;
   border-bottom: 1px solid var(--sketch);
-
-  /*text-align: center;*/
 }
 
-.landing-wrapper-about h4.body-copy {
+.landing-container .about-landing-wrapper h4.body-copy {
   font-weight: 500;
+}
+
+.landing-container .about-landing-tools {
+  align-self: start;
+  width: 100%;
 }
 
 /* movies container */
@@ -223,6 +224,10 @@ picture.logo img {
 #home .search-radio {
   justify-content: center;
   align-items: center;
+}
+
+#home .search {
+  align-self: center;
 }
 
 #home .content-container .search {
@@ -372,12 +377,18 @@ footer .social-media {
     display: flex;
   }
 
-  nav .nav-drop-down {
-    /* display: none !important; */
-  }
-
   .info span {
     display: inline-block;
+  }
+
+  .landing-container .about-landing-wrapper {
+    margin: 100px auto;
+  }
+
+  .landing-container .tools-list {
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   #modal {
@@ -413,12 +424,16 @@ footer .social-media {
     padding: 0px 10px;
   }
 
-  nav .nav-drop-down {
-    /* display: flex !important; */
+  nav .search-bar-icon {
+    display: block !important;
   }
 
   nav nav-inputs .container {
     padding-bottom: 0;
+  }
+
+  nav section.nav-search {
+    opacity: 1 !important;
   }
 
   .icons .login-icon {
@@ -426,9 +441,6 @@ footer .social-media {
     font-size: 22px;
   }
 
-  /* .search-bar-icon {
-    display: block !important;
-  } */
   nav-inputs .login {
     display: flex;
   }
