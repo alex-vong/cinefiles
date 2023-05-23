@@ -1001,8 +1001,8 @@ function init() {
   //   Event Listeners
   if (
     globalState === '/modules/cinefiles' ||
-    globalState === '/' ||
-    globalState === '/modules/cinefiles/index.html'
+    globalState === '/modules/cinefiles/index.html' ||
+    globalState === '/'
   ) {
     displaySlider();
     updateUI();
