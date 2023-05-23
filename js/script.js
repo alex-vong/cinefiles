@@ -999,7 +999,11 @@ async function fetchSearchContent(endpoint, query) {
 
 function init() {
   //   Event Listeners
-  if (globalState === '/modules/cinefiles' || globalState === '/') {
+  if (
+    globalState === '/modules/cinefiles' ||
+    globalState === '/' ||
+    globalState === '/modules/cinefiles/index.html'
+  ) {
     displaySlider();
     updateUI();
 
@@ -1031,13 +1035,13 @@ function init() {
     checkWindowSize();
   }
 
-  if (globalState === '/movie-details.html') {
+  if (globalState === 'modules/cinefiles/movie-details.html') {
     displayContentDetails('movie');
   }
-  if (globalState === '/tv-details.html') {
+  if (globalState === 'modules/cinefiles/tv-details.html') {
     displayContentDetails('tv');
   }
-  if (globalState === '/search.html') {
+  if (globalState === 'modules/cinefiles/search.html') {
     searchForContent();
   }
 
