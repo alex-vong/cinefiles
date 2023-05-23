@@ -39,7 +39,7 @@ let hamAbout;
 const API_KEY = 'ea38f315243a154fd347ea9eeb849656';
 const API_URL = 'https://api.themoviedb.org/3';
 
-//swiper
+//swiper for movie slider
 async function displaySlider() {
   if (window.innerWidth < 768) {
     document.querySelector('.swiper-pagination').classList.add('hidden');
@@ -48,7 +48,6 @@ async function displaySlider() {
   }
 
   const { results } = await fetchAPIData(`movie/now_playing`);
-  // console.log(results);
 
   document.querySelector('.swiper-wrapper').innerHTML = '';
 
@@ -104,6 +103,7 @@ async function displaySlider() {
   });
 }
 
+//swiper for tv series swiper
 async function displaySliderTV() {
   const { results } = await fetchAPIData('trending/tv/week');
 
@@ -191,28 +191,6 @@ function initSwiper() {
     },
   });
 }
-
-function checkWindowSize() {
-  function onWindowResize() {
-    const windowWidth =
-      window.innerWidth || document.documentElement.clientWidth;
-    if (windowWidth > 768 && windowWidth < 800) {
-      displaySlider();
-      updateUI();
-    } else if (windowWidth > 320 && windowWidth < 500) {
-      displaySlider();
-    }
-  }
-
-  // Initial check on page load
-  onWindowResize();
-
-  // Check window size on window resize
-  window.addEventListener('resize', onWindowResize);
-}
-
-// Call the checkWindowSize function to start monitoring the window size
-checkWindowSize();
 
 //displays trending movies and tv shows
 async function displayTrending(type) {
@@ -311,8 +289,8 @@ async function displayTrendingTV() {
 }
 
 //DETAILS PAGE
-//displays movie or tv shows details on details.html
 
+//displays movie or tv shows details on details.html
 async function displayContentDetails(type) {
   const contentID = window.location.search.split('=')[1];
   let content;
@@ -320,8 +298,6 @@ async function displayContentDetails(type) {
 
   const previousPageURL = document.referrer;
   const url = new URL(previousPageURL);
-
-  console.log(url.pathname);
 
   if (url.pathname === '/search.html') {
     const goBackBtn = document.createElement('button');
@@ -357,7 +333,447 @@ async function displayContentDetails(type) {
   generateContentLanding(type, content, trailer);
 }
 
+//function to get credits
+async function getCredits(type, content) {
+  const credit = document.querySelector('.credits-grid');
+
+  let creditList;
+
+  type === 'movie'
+    ? (creditList = await fetchAPIData(`movie/${content.id}/credits`))
+    : (creditList = await fetchAPIData(`tv/${content.id}/credits`));
+
+  let { cast } = creditList;
+
+  cast.splice(5);
+
+  cast.forEach((actor) => {
+    const li = document.createElement('li');
+    li.innerHTML = `
+          <picture>
+              ${
+                actor.profile_path
+                  ? `<img
+              src="https://image.tmdb.org/t/p/w500${actor.profile_path}"
+              class="card-img-top"
+              alt="${content.name}"
+            />`
+                  : `<img
+            src="../images/no-image.jpg"
+            class="card-img-top"
+            alt="${content.name}"
+            />`
+              }
+        </picture>
+        <div class="credit-info">
+            <p class="body-copy fw-500 primary">${actor.name}</p>
+            <p class="quiet-voice">${actor.character}</p>
+        </div>
+    `;
+
+    if (cast.length < 5) {
+      li.classList.add('grid-bumper');
+
+      document.querySelector('ul.credits-grid').classList.remove('sb');
+    }
+
+    credit.appendChild(li);
+  });
+}
+
+// search movies/shows
+async function searchForContent() {
+  const queryString = window.location.search;
+
+  if (queryString === '') {
+    document.querySelector('.search-heading').innerHTML = `
+    This is the <span class="primary">Search Page</span>. You can search movie or television programs here. `;
+  } else {
+    const urlParams = new URLSearchParams(queryString);
+
+    searchPage.term = urlParams.get('search-term');
+
+    const query = searchPage.term;
+    console.log(query);
+
+    let { results, total_pages, page, total_results } =
+      await fetchSearchContent('search/multi', query);
+
+    searchPage.page = page;
+    searchPage.totalPages = total_pages;
+    searchPage.totalResults = total_results;
+
+    generateSearchResultsGrid(results, total_results);
+  }
+
+  displaySearchPagination('search/multi');
+}
+
+//opens dropdown search bar on mobile and tablet
+function dropDownSearch() {
+  if (navSearch.style.maxHeight) {
+    navSearch.style.maxHeight = null;
+    dropDown.classList.remove('active');
+    hamBtn.classList.remove('active');
+
+    setTimeout(() => {
+      navSearch.style.opacity = '0';
+    }, 300);
+  } else {
+    navSearch.style.maxHeight = '100px';
+
+    setTimeout(() => {
+      navSearch.style.opacity = '1';
+    }, 300);
+  }
+}
+
+//closes dropdown
+function closeDropDownSearch() {
+  navSearch.style.maxHeight = null;
+  dropDown.classList.remove('active');
+  searchBarIcon.style.display = 'none';
+
+  setTimeout(() => {
+    navSearch.style.opacity = '0';
+  }, 300);
+}
+
+//expand search drop down
+function expandSearchDropDown() {
+  dropDown.classList.add('active');
+  navInput.innerHTML = '';
+
+  if (hamBtn.classList.contains('active')) {
+    generateSearchDropDownContent();
+    hamBtn.classList.remove('active');
+  } else {
+    dropDownSearch();
+    generateSearchDropDownContent();
+  }
+}
+
+//expand the nav bar
+function expandHamMenuContent() {
+  hamBtn.classList.add('active');
+  navInput.innerHTML = '';
+  if (dropDown.classList.contains('active')) {
+    generateHamburgerDropDownContent();
+    dropDown.classList.remove('active');
+  } else {
+    dropDownSearch();
+    generateHamburgerDropDownContent();
+  }
+
+  hamAbout = document.querySelector('.nav-drop-down .about-btn');
+
+  hamAbout.addEventListener('click', expandAboutSection);
+}
+
+//expand About section
+function expandAboutSection(e) {
+  e.preventDefault();
+
+  // const about = document.querySelector('.about');
+
+  if (landingContainer.style.maxHeight) {
+    landingContainer.style.maxHeight = null;
+    hamAbout ? hamAbout.classList.remove('active') : null;
+    aboutBtn.classList.remove('active');
+  } else {
+    landingContainer.style.maxHeight = landingContainer.scrollHeight + 'px';
+    hamAbout ? hamAbout.classList.add('active') : null;
+    aboutBtn.classList.add('active');
+  }
+
+  updateNavActiveState();
+}
+
+//expand sign in modak
+function expandSignIn() {
+  console.log(loginBtn);
+
+  const btn = document.querySelector('.nav-search i.login');
+  console.log(btn);
+
+  if (modalContainer.style.maxHeight) {
+    modalContainer.style.maxHeight = null;
+    btn.classList.remove('active');
+  } else {
+    modalContainer.style.maxHeight = modalContainer.scrollHeight + 'px';
+  }
+
+  console.log('login button clicked');
+
+  const closeSignInBtn = document.querySelector('.modal-close-btn');
+
+  closeSignInBtn.addEventListener('click', () => {
+    modalContainer.style.maxHeight = null;
+    btn.classList.remove('active');
+  });
+}
+
+//component functions used throughout application
+
+function updateHeadTitle(type, content) {
+  const title = document.querySelector('title');
+  type === 'movie'
+    ? (title.textContent = content.title)
+    : (title.textContent = content.name);
+}
+
+function wordsToString(words) {
+  return words.join(', ');
+}
+
+function convertBoxOffice(amount) {
+  const abbreviations = {
+    K: 1000,
+    M: 1000000,
+    B: 1000000000,
+  };
+
+  for (const key in abbreviations) {
+    if (amount >= abbreviations[key] && amount < abbreviations[key] * 1000) {
+      const shortened = (amount / abbreviations[key]).toFixed(1);
+      return shortened.replace(/\.0$/, '') + key;
+    }
+  }
+
+  return amount.toString();
+}
+
+function arrayToString(array) {
+  const arrayList = array.map((genre) => genre.name);
+  return arrayList.join(', ');
+}
+
+function calculateRating(rating) {
+  let roundedUpRating = Math.ceil(rating * 10) / 10;
+  return roundedUpRating.toFixed(1);
+}
+
+function displaySearchPagination(endpoint) {
+  console.log(endpoint);
+  console.log(searchPage.term);
+  document.getElementById('search-pagination').innerHTML = `
+        <div class="buttons flex-row gap-8">
+        <button id="prev-btn" class="btn prev-btn whisper fw-600"><i class="fa-solid fa-arrow-left"></i></button>
+        <button id="next-btn" class="btn next-btn whisper fw-600"><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+      <div class="page-index">
+        <p class="quiet-voice">Page ${searchPage.page} of ${searchPage.totalPages}</p>
+      </div>
+  `;
+
+  // Disable prev button if on first page
+  if (searchPage.page === 1) {
+    document.getElementById('prev-btn').disabled = true;
+  }
+
+  // Disable next button if on last page
+  if (searchPage.page === searchPage.totalPages) {
+    document.getElementById('next-btn').disabled = true;
+  }
+
+  // Next page
+  document.getElementById('next-btn').addEventListener('click', async () => {
+    searchPage.page++;
+    const { results, total_pages } = await fetchSearchContent(
+      endpoint,
+      searchPage.term
+    );
+    console.log(results);
+    displaySearchPagination('search/multi');
+
+    generateSearchResultsGrid(results);
+  });
+
+  // Prev page
+  document.getElementById('prev-btn').addEventListener('click', async () => {
+    searchPage.page--;
+
+    const { results, total_pages } = await fetchSearchContent(
+      endpoint,
+      searchPage.term
+    );
+    console.log(results);
+    displaySearchPagination('search/multi');
+
+    generateSearchResultsGrid(results);
+  });
+}
+
+//functions to generate content
+function generateCard(content) {
+  const li = document.createElement('li');
+  li.classList.add('card');
+
+  li.innerHTML = `
+            <a href="/${
+              content.media_type === 'movie' || content.original_title
+                ? 'movie-details.html'
+                : 'tv-details.html'
+            }?id=${content.id}">
+               <picture>
+               ${
+                 content.poster_path
+                   ? `<img
+                src="https://image.tmdb.org/t/p/w500${content.poster_path}"
+                class="card-img-top"
+                alt="${content === 'movie' ? content.title : content.name}"
+              />`
+                   : `<img
+              src="../images/no-image.jpg"
+              class="card-img-top"
+              alt="${content === 'movie' ? content.title : content.name}"
+            />`
+               }
+               </picture>
+           </a>
+          <div class="card-info flex-col gap-5">
+            <h4 class="page-title body-copy fw-500">${
+              content.title ? content.title : content.name
+            }</h4>
+            <div class="content-details flex-row gap-10 sb">
+              <div class="flex-row gap-10">
+                <p class="whisper">${
+                  content.release_date === ''
+                    ? 'Coming Soon'
+                    : content.release_date
+                    ? content.release_date.slice(0, 4)
+                    : content.first_air_date.slice(0, 4)
+                }</p>
+                <p class="whisper"><i class="fas fa-star text-primary"></i> ${
+                  content.vote_average === 0
+                    ? 'No Rating'
+                    : calculateRating(content.vote_average)
+                }</p>
+              </div>
+              <div>
+                <p class="whisper content"> ${
+                  content.media_type === 'movie' || content.release_date
+                    ? 'Movie'
+                    : 'TV'
+                }</p>
+              </div>
+
+
+            </div>
+          </div>
+    `;
+
+  return li;
+}
+
+function generateSearchResultsGrid(results) {
+  const justFilmAndTV = results.filter(
+    (result) => result.media_type !== 'person'
+  );
+
+  if (results.length === 0) {
+    document.querySelector('.search-heading').innerHTML = `
+    <span class="primary">0</span> results for "<span class="primary">${query}</span>". 
+  `;
+  }
+
+  const searchUl = document.querySelector('.search-results-grid');
+
+  searchUl.innerHTML = '';
+
+  document.querySelector('.search-heading').innerHTML = `
+        <span class="primary">${searchPage.totalResults}</span> 
+          results for 
+        "<span class="primary">${searchPage.term}</span>" 
+    `;
+
+  justFilmAndTV.forEach((content) => {
+    const individualCard = generateCard(content);
+    searchUl.appendChild(individualCard);
+  });
+}
+
+function generateSearchDropDownContent() {
+  navInput.innerHTML = `
+    <div class="container gap-20">
+        <form id="search-form" action="/search.html" class="search-form flex-col gap-10">
+          <div class="search-flex flex-row gap-10">
+              <input
+                type="text"
+                name="search-term"
+                id="search-input"
+                placeholder="Search database"
+                class="fw-500"
+              />
+              <i class="fa-solid fa-magnifying-glass search-bar-icon"></i>
+              <i class="fa-regular fa-circle-user login"></i>
+              <i class="fa-regular fa-circle-xmark close-search"></i>
+              </div>
+    </div>
+  `;
+}
+
+function generateHamburgerDropDownContent() {
+  navSearch.style.display = 'flex';
+  navInput.innerHTML = `
+    <section class="nav-drop-down container quiet-voice flex-row gap-40">
+      <a href="/index.html" class="fw-500 home">Home</a>
+      <a href="" class="about-btn fw-500 about">About</a>
+      <a href="" class="fw-500 imdb">Top IMDB</a>
+    </section>
+    `;
+}
+
+function generateSignInContent() {
+  modalContainer.innerHTML = `
+  <div class="modal-container">
+  <inner-column>  
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="fourth-level-heading primary">Welcome Back!</h2>
+        <i class="fa-solid fa-xmark modal-close-btn"></i>
+      </div>
+
+      <div class="modal-body">
+          <form class="flex-col gap-20">
+              <section class="modal-inputs flex-col gap-20">
+                  <div class="email-input flex-col gap-8">
+                      <label for="email">Email Address</label>
+                      <input type="email" id="email" name = "email" autocomplete="email" placeholder="name@email.com" required>
+                  </div>
+                  
+                  <div class="password-input flex-col gap-8">
+                      <label for="password">Password</label>
+
+                      <input type="password" 
+                      id="password"
+                      name="password"
+                      placeholder="Password" 
+                      autocomplete="current-password"
+                      required>
+                  </div>
+              </section>
+          <div class="modal-links flex-row sb">
+              <label class="flex-row gap-5">
+                <input type="checkbox"> 
+                <span>Remember me</span>
+              </label>
+              <a href="" class="primary"> Forgot Password?</a>
+          </div>
+          <button type="submit" class="btn quiet-voice fw-600">Login</button>
+          <p>Don't have an account? <span class="primary">Register</span> </p>
+        </form>
+      </div>
+    </div>
+ 
+  </inner-column>  
+</div>`;
+
+  expandSignIn();
+}
+
 function generateContentLanding(type, content, trailerKey) {
+  updateHeadTitle(type, content);
   const genres = content.genres;
   const genreNames = arrayToString(genres);
 
@@ -452,190 +868,6 @@ function generateContentLanding(type, content, trailerKey) {
   generateDetailsInfo(type, content);
 }
 
-async function getCredits(type, content) {
-  const credit = document.querySelector('.credits-grid');
-
-  let creditList;
-
-  type === 'movie'
-    ? (creditList = await fetchAPIData(`movie/${content.id}/credits`))
-    : (creditList = await fetchAPIData(`tv/${content.id}/credits`));
-
-  let { cast } = creditList;
-
-  cast.splice(5);
-
-  cast.forEach((actor) => {
-    const li = document.createElement('li');
-    li.innerHTML = `
-          <picture>
-              ${
-                actor.profile_path
-                  ? `<img
-              src="https://image.tmdb.org/t/p/w500${actor.profile_path}"
-              class="card-img-top"
-              alt="${content.name}"
-            />`
-                  : `<img
-            src="../images/no-image.jpg"
-            class="card-img-top"
-            alt="${content.name}"
-            />`
-              }
-        </picture>
-        <div class="credit-info">
-            <p class="body-copy fw-500 primary">${actor.name}</p>
-            <p class="quiet-voice">${actor.character}</p>
-        </div>
-    `;
-
-    if (cast.length < 5) {
-      li.classList.add('grid-bumper');
-
-      document.querySelector('ul.credits-grid').classList.remove('sb');
-    }
-
-    credit.appendChild(li);
-  });
-}
-
-// search movies/shows
-
-async function searchForContent() {
-  const queryString = window.location.search;
-
-  if (queryString === '') {
-    document.querySelector('.search-heading').innerHTML = `
-    This is the <span class="primary">Search Page</span>. You can search movie or television programs here. `;
-  } else {
-    const urlParams = new URLSearchParams(queryString);
-
-    searchPage.term = urlParams.get('search-term');
-
-    const query = searchPage.term;
-    console.log(query);
-
-    let { results, total_pages, page, total_results } =
-      await fetchSearchContent('search/multi', query);
-
-    searchPage.page = page;
-    searchPage.totalPages = total_pages;
-    searchPage.totalResults = total_results;
-
-    generateSearchResultsGrid(results, total_results);
-  }
-
-  displaySearchPagination('search/multi');
-}
-
-//fetch data from tvdb api
-
-async function fetchAPIData(endpoint) {
-  const res = await fetch(
-    `${API_URL}/${endpoint}?api_key=${API_KEY}&language=en-US&region=US`
-  );
-
-  const data = await res.json();
-  // console.log(data);
-  return data;
-}
-
-async function fetchPopData(endpoint) {
-  const res = await fetch(
-    `${API_URL}/${endpoint}?api_key=${API_KEY}&sort_by=latest_release.desc&first_air_date.gte=2023-01-01&with_watch_providers=8&watch_region=US`
-  );
-
-  const data = await res.json();
-  // console.log(data);
-
-  return data;
-}
-async function fetchSearchContent(endpoint, query) {
-  const res = await fetch(
-    `${API_URL}/${endpoint}?api_key=${API_KEY}&query=${query}&page=${searchPage.page}&region=US&include_adult=false`
-  );
-
-  const data = await res.json();
-  // console.log(data);
-
-  return data;
-}
-
-//opens dropdown search bar on mobile and tablet
-function dropDownSearch() {
-  if (navSearch.style.maxHeight) {
-    navSearch.style.maxHeight = null;
-    dropDown.classList.remove('active');
-    hamBtn.classList.remove('active');
-
-    setTimeout(() => {
-      navSearch.style.opacity = '0';
-    }, 300);
-  } else {
-    navSearch.style.maxHeight = '100px';
-
-    setTimeout(() => {
-      navSearch.style.opacity = '1';
-    }, 300);
-  }
-}
-
-//closes dropdown
-function closeDropDownSearch() {
-  navSearch.style.maxHeight = null;
-  dropDown.classList.remove('active');
-  searchBarIcon.style.display = 'none';
-
-  setTimeout(() => {
-    navSearch.style.opacity = '0';
-  }, 300);
-}
-
-function expandAboutSection(e) {
-  e.preventDefault();
-
-  // const about = document.querySelector('.about');
-
-  if (landingContainer.style.maxHeight) {
-    landingContainer.style.maxHeight = null;
-    hamAbout ? hamAbout.classList.remove('active') : null;
-    aboutBtn.classList.remove('active');
-  } else {
-    landingContainer.style.maxHeight = landingContainer.scrollHeight + 'px';
-    hamAbout ? hamAbout.classList.add('active') : null;
-    aboutBtn.classList.add('active');
-  }
-
-  updateNavActiveState();
-}
-
-function expandSignIn() {
-  console.log(loginBtn);
-
-  const btn = document.querySelector('.nav-search i.login');
-  console.log(btn);
-
-  if (modalContainer.style.maxHeight) {
-    modalContainer.style.maxHeight = null;
-    btn.classList.remove('active');
-  } else {
-    modalContainer.style.maxHeight = modalContainer.scrollHeight + 'px';
-  }
-
-  console.log('login button clicked');
-
-  const closeSignInBtn = document.querySelector('.modal-close-btn');
-
-  closeSignInBtn.addEventListener('click', () => {
-    modalContainer.style.maxHeight = null;
-    btn.classList.remove('active');
-  });
-}
-
-function wordsToString(words) {
-  return words.join(', ');
-}
-
 function generateGenre(genre) {
   var genreList = [
     { id: 28, name: 'Action' },
@@ -714,169 +946,19 @@ function generateDetailsInfo(type, content) {
   }
 }
 
-function convertBoxOffice(amount) {
-  const abbreviations = {
-    K: 1000,
-    M: 1000000,
-    B: 1000000000,
-  };
-
-  for (const key in abbreviations) {
-    if (amount >= abbreviations[key] && amount < abbreviations[key] * 1000) {
-      const shortened = (amount / abbreviations[key]).toFixed(1);
-      return shortened.replace(/\.0$/, '') + key;
-    }
+function updateNavActiveState() {
+  if (homeBtn.classList.contains('active')) {
+    homeBtn.classList.remove('active');
   }
-
-  return amount.toString();
-}
-
-function arrayToString(array) {
-  const arrayList = array.map((genre) => genre.name);
-  return arrayList.join(', ');
-}
-
-function generateCard(content) {
-  const li = document.createElement('li');
-  li.classList.add('card');
-
-  li.innerHTML = `
-            <a href="/${
-              content.media_type === 'movie' || content.original_title
-                ? 'movie-details.html'
-                : 'tv-details.html'
-            }?id=${content.id}">
-               <picture>
-               ${
-                 content.poster_path
-                   ? `<img
-                src="https://image.tmdb.org/t/p/w500${content.poster_path}"
-                class="card-img-top"
-                alt="${content === 'movie' ? content.title : content.name}"
-              />`
-                   : `<img
-              src="../images/no-image.jpg"
-              class="card-img-top"
-              alt="${content === 'movie' ? content.title : content.name}"
-            />`
-               }
-               </picture>
-           </a>
-          <div class="card-info flex-col gap-5">
-            <h4 class="page-title body-copy fw-500">${
-              content.title ? content.title : content.name
-            }</h4>
-            <div class="content-details flex-row gap-10 sb">
-              <div class="flex-row gap-10">
-                <p class="whisper">${
-                  content.release_date === ''
-                    ? 'Coming Soon'
-                    : content.release_date
-                    ? content.release_date.slice(0, 4)
-                    : content.first_air_date.slice(0, 4)
-                }</p>
-                <p class="whisper"><i class="fas fa-star text-primary"></i> ${
-                  content.vote_average === 0
-                    ? 'No Rating'
-                    : calculateRating(content.vote_average)
-                }</p>
-              </div>
-              <div>
-                <p class="whisper content"> ${
-                  content.media_type === 'movie' || content.release_date
-                    ? 'Movie'
-                    : 'TV'
-                }</p>
-              </div>
-
-
-            </div>
-          </div>
-    `;
-
-  return li;
-}
-
-function calculateRating(rating) {
-  let roundedUpRating = Math.ceil(rating * 10) / 10;
-  return roundedUpRating.toFixed(1);
-}
-
-function displaySearchPagination(endpoint) {
-  console.log(endpoint);
-  console.log(searchPage.term);
-  document.getElementById('search-pagination').innerHTML = `
-        <div class="buttons flex-row gap-8">
-        <button id="prev-btn" class="btn prev-btn whisper fw-600"><i class="fa-solid fa-arrow-left"></i></button>
-        <button id="next-btn" class="btn next-btn whisper fw-600"><i class="fa-solid fa-arrow-right"></i></button>
-      </div>
-      <div class="page-index">
-        <p class="quiet-voice">Page ${searchPage.page} of ${searchPage.totalPages}</p>
-      </div>
-  `;
-
-  // Disable prev button if on first page
-  if (searchPage.page === 1) {
-    document.getElementById('prev-btn').disabled = true;
+  if (topIMDBBtn.classList.contains('active')) {
+    topIMDBBtn.classList.remove('active');
   }
-
-  // Disable next button if on last page
-  if (searchPage.page === searchPage.totalPages) {
-    document.getElementById('next-btn').disabled = true;
-  }
-
-  // Next page
-  document.getElementById('next-btn').addEventListener('click', async () => {
-    searchPage.page++;
-    const { results, total_pages } = await fetchSearchContent(
-      endpoint,
-      searchPage.term
-    );
-    console.log(results);
-    displaySearchPagination('search/multi');
-
-    generateSearchResultsGrid(results);
-  });
-
-  // Prev page
-  document.getElementById('prev-btn').addEventListener('click', async () => {
-    searchPage.page--;
-
-    const { results, total_pages } = await fetchSearchContent(
-      endpoint,
-      searchPage.term
-    );
-    console.log(results);
-    displaySearchPagination('search/multi');
-
-    generateSearchResultsGrid(results);
-  });
 }
 
-function generateSearchResultsGrid(results, total_results) {
-  const justFilmAndTV = results.filter(
-    (result) => result.media_type !== 'person'
-  );
-
-  if (results.length === 0) {
-    document.querySelector('.search-heading').innerHTML = `
-    <span class="primary">0</span> results for "<span class="primary">${query}</span>". 
-  `;
-  }
-
-  const searchUl = document.querySelector('.search-results-grid');
-
-  searchUl.innerHTML = '';
-
-  document.querySelector('.search-heading').innerHTML = `
-        <span class="primary">${searchPage.totalResults}</span> 
-          results for 
-        "<span class="primary">${searchPage.term}</span>" 
-    `;
-
-  justFilmAndTV.forEach((content) => {
-    const individualCard = generateCard(content);
-    searchUl.appendChild(individualCard);
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
   });
 }
 
@@ -887,106 +969,36 @@ function updateUI() {
   displayTrending('movie');
 }
 
-function updateNavActiveState() {
-  if (homeBtn.classList.contains('active')) {
-    homeBtn.classList.remove('active');
-  }
-  if (topIMDBBtn.classList.contains('active')) {
-    topIMDBBtn.classList.remove('active');
-  }
-
-  // aboutBtn.classList.add('active');
+//all functions to fetch data from movie database api
+//fetch data from tvdb api
+async function fetchAPIData(endpoint) {
+  const res = await fetch(
+    `${API_URL}/${endpoint}?api_key=${API_KEY}&language=en-US&region=US`
+  );
+  const data = await res.json();
+  return data;
 }
 
-function generateSearchDropDownContent() {
-  navInput.innerHTML = `
-    <div class="container gap-20">
-        <form id="search-form" action="/search.html" class="search-form flex-col gap-10">
-          <div class="search-flex flex-row gap-10">
-              <input
-                type="text"
-                name="search-term"
-                id="search-input"
-                placeholder="Search database"
-                class="fw-500"
-              />
-              <i class="fa-solid fa-magnifying-glass search-bar-icon"></i>
-              <i class="fa-regular fa-circle-user login"></i>
-              <i class="fa-regular fa-circle-xmark close-search"></i>
-              </div>
-    </div>
-  `;
+//fetch popular data
+async function fetchPopData(endpoint) {
+  const res = await fetch(
+    `${API_URL}/${endpoint}?api_key=${API_KEY}&sort_by=latest_release.desc&first_air_date.gte=2023-01-01&with_watch_providers=8&watch_region=US`
+  );
+  const data = await res.json();
+  return data;
 }
 
-function generateHamburgerDropDownContent() {
-  navSearch.style.display = 'flex';
-  navInput.innerHTML = `
-    <section class="nav-drop-down container quiet-voice flex-row gap-40">
-      <a href="/index.html" class="fw-500 home">Home</a>
-      <a href="" class="about-btn fw-500 about">About</a>
-      <a href="" class="fw-500 imdb">Top IMDB</a>
-    </section>
-    `;
-}
-
-function generateSignInContent() {
-  modalContainer.innerHTML = `
-  <div class="modal-container">
-  <inner-column>  
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="fourth-level-heading primary">Welcome Back!</h2>
-        <i class="fa-solid fa-xmark modal-close-btn"></i>
-      </div>
-
-      <div class="modal-body">
-          <form class="flex-col gap-20">
-              <section class="modal-inputs flex-col gap-20">
-                  <div class="email-input flex-col gap-8">
-                      <label for="email">Email Address</label>
-                      <input type="email" id="email" name = "email" autocomplete="email" placeholder="name@email.com" required>
-                  </div>
-                  
-                  <div class="password-input flex-col gap-8">
-                      <label for="password">Password</label>
-
-                      <input type="password" 
-                      id="password"
-                      name="password"
-                      placeholder="Password" 
-                      autocomplete="current-password"
-                      required>
-                  </div>
-              </section>
-          <div class="modal-links flex-row sb">
-              <label class="flex-row gap-5">
-                <input type="checkbox"> 
-                <span>Remember me</span>
-              </label>
-              <a href="" class="primary"> Forgot Password?</a>
-          </div>
-          <button type="submit" class="btn quiet-voice fw-600">Login</button>
-          <p>Don't have an account? <span class="primary">Register</span> </p>
-        </form>
-      </div>
-    </div>
- 
-  </inner-column>  
-</div>`;
-
-  expandSignIn();
-}
-
-function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
+//fetch search input
+async function fetchSearchContent(endpoint, query) {
+  const res = await fetch(
+    `${API_URL}/${endpoint}?api_key=${API_KEY}&query=${query}&page=${searchPage.page}&region=US&include_adult=false`
+  );
+  const data = await res.json();
+  return data;
 }
 
 function init() {
   //   Event Listeners
-
   if (globalState === '/index.html' || globalState === '/') {
     displaySlider();
     updateUI();
@@ -995,6 +1007,28 @@ function init() {
 
     tvBtn.addEventListener('click', displaySliderTV);
     movieBtn.addEventListener('click', updateUI);
+
+    function checkWindowSize() {
+      function onWindowResize() {
+        const windowWidth =
+          window.innerWidth || document.documentElement.clientWidth;
+        if (windowWidth > 768 && windowWidth < 800) {
+          displaySlider();
+          updateUI();
+        } else if (windowWidth > 320 && windowWidth < 500) {
+          displaySlider();
+        }
+      }
+
+      // Initial check on page load
+      onWindowResize();
+
+      // Check window size on window resize
+      window.addEventListener('resize', onWindowResize);
+    }
+
+    // Call the checkWindowSize function to start monitoring the window size
+    checkWindowSize();
   }
 
   if (globalState === '/movie-details.html') {
@@ -1009,18 +1043,7 @@ function init() {
 
   searchBarIcon.style.display = 'none';
 
-  dropDown.addEventListener('click', () => {
-    dropDown.classList.add('active');
-    navInput.innerHTML = '';
-
-    if (hamBtn.classList.contains('active')) {
-      generateSearchDropDownContent();
-      hamBtn.classList.remove('active');
-    } else {
-      dropDownSearch();
-      generateSearchDropDownContent();
-    }
-  });
+  dropDown.addEventListener('click', expandSearchDropDown);
 
   navInput.addEventListener('click', (e) => {
     console.log(e);
@@ -1032,11 +1055,6 @@ function init() {
       generateSignInContent();
     }
   });
-
-  // const searchFlex = document.querySelector('.search-flex');
-  // searchFlex.addEventListener('click', (e) => {
-  //   console.log(e.target);
-  // });
 
   closeSearch.addEventListener('click', closeDropDownSearch);
 
@@ -1051,21 +1069,7 @@ function init() {
     });
   }
 
-  hamBtn.addEventListener('click', () => {
-    hamBtn.classList.add('active');
-    navInput.innerHTML = '';
-    if (dropDown.classList.contains('active')) {
-      generateHamburgerDropDownContent();
-      dropDown.classList.remove('active');
-    } else {
-      dropDownSearch();
-      generateHamburgerDropDownContent();
-    }
-
-    hamAbout = document.querySelector('.nav-drop-down .about-btn');
-
-    hamAbout.addEventListener('click', expandAboutSection);
-  });
+  hamBtn.addEventListener('click', expandHamMenuContent);
 
   loginBtn.addEventListener('click', generateSignInContent);
 
