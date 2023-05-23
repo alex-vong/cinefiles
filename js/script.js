@@ -1002,7 +1002,8 @@ function init() {
   if (
     globalState === '/modules/cinefiles' ||
     globalState === '/modules/cinefiles/index.html' ||
-    globalState === '/'
+    globalState === '/' ||
+    globalState === '/index.html'
   ) {
     displaySlider();
     updateUI();
@@ -1035,13 +1036,22 @@ function init() {
     checkWindowSize();
   }
 
-  if (globalState === '/modules/cinefiles/movie-details.html') {
+  if (
+    globalState === '/modules/cinefiles/movie-details.html' ||
+    globalState === '/movie-details.html'
+  ) {
     displayContentDetails('movie');
   }
-  if (globalState === '/modules/cinefiles/tv-details.html') {
+  if (
+    globalState === '/modules/cinefiles/tv-details.html' ||
+    globalState === '/tv-details.html'
+  ) {
     displayContentDetails('tv');
   }
-  if (globalState === '/modules/cinefiles/search.html') {
+  if (
+    globalState === '/modules/cinefiles/search.html' ||
+    globalState === '/search.html'
+  ) {
     searchForContent();
   }
 
