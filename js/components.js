@@ -1,7 +1,28 @@
+const head = document.querySelectorAll('head');
 const header = document.querySelectorAll('header');
 const footer = document.querySelectorAll('footer');
 const landingAbout = document.querySelectorAll('.landing-container');
 const body = document.querySelectorAll('body');
+
+head.forEach((head) => {
+  head.innerHTML = `
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CineFiles</title>
+    <meta name="og:description" content="Search For All Your Favorite TV Shows" />
+    <meta property="og:title" content="Welcome - The TV DataBase" />
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="https://alexvong.dev/images/tvdb-meta.svg" />
+    <meta property="og:image:type" content="https://alexvong.dev/images/tvdb-meta.svg" />
+    <link rel="shortcut icon" type="image/jpg" href="images/favicon.svg" />
+    <link rel='stylesheet' href='css/style.css'>
+    <link rel='stylesheet' href='css/details.css'>
+    <link rel='stylesheet' href='lib/swiper.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    `;
+});
 
 header.forEach((header) => {
   header.innerHTML = `
@@ -70,7 +91,7 @@ landingAbout.forEach((landingContainer) => {
   landingContainer.innerHTML = `
   
   <inner-column>
-  <section class="landing-wrapper-about">
+  <section class="about-landing-wrapper">
       <a href="/index.html">
           <section class="about-logo flex-row">
             <span class="third-level-heading main">C</span>
@@ -81,8 +102,8 @@ landingAbout.forEach((landingContainer) => {
       The Ultimate <span class="primary fw-600">Movie</span> and <span class="primary fw-600">TV</span> Database.
     </h2>
 
-    <section class="landing-info">
-      <section class="landing-info-welcome">
+    <section class="about-landing-intro">
+      <section class="landing-intro-welcome">
         <h4 class="fifth-level-heading">Welcome</h4>
         <div class="flex-col gap-10">
           <p class="quiet-voice">
@@ -112,7 +133,7 @@ landingAbout.forEach((landingContainer) => {
       </section>
     </section>
 
-    <section class="landing-info-about">
+    <section class="about-landing-about">
       <h4 class="fifth-level-heading">About <span>CineFiles</span></h4>
       <div class="flex-col gap-10">
         <p class="quiet-voice">
@@ -131,7 +152,7 @@ landingAbout.forEach((landingContainer) => {
       </div>
     </section>
 
-    <section class="landing-info-tools">
+    <section class="about-landing-tools">
       <h4 class="fifth-level-heading"> Tools</h4>
       <div class="tools-list flex-col gap-20">
           <div class="design-tools">
