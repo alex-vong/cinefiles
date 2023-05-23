@@ -90,6 +90,24 @@ function expandAboutSection(e) {
   }
 
   updateNavActiveState();
+}
+
+function expandSignIn() {
+  console.log(loginBtn);
+
+  const btn = document.querySelector('.nav-search i.login');
+  console.log(btn);
+
+  if (modalContainer.style.maxHeight) {
+    modalContainer.style.maxHeight = null;
+    btn.classList.remove('active');
+  } else {
+    modalContainer.style.maxHeight = modalContainer.scrollHeight + 'px';
+  }
+
+  console.log('login button clicked');
+
+  const closeSignInBtn = document.querySelector('.modal-close-btn');
 
   // hamBtn.classList.contains('active') ? hamAbout.classList.add('active') : null;
 }
