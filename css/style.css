@@ -52,6 +52,7 @@ nav section.nav-search {
   overflow: hidden;
   transition: max-height 0.5s ease-in-out;
   background-color: var(--bg-secondary);
+  display: flex;
 }
 
 nav .masthead div {
@@ -61,7 +62,7 @@ nav .masthead div {
 
 nav nav-links,
 nav nav-inputs,
-.login {
+nav .login {
   flex-direction: row;
   gap: 20px;
 }
@@ -104,6 +105,60 @@ nav nav-inputs .search-form {
 picture.logo img {
   height: 50px;
   width: auto;
+}
+
+/* modal */
+
+#modal {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+#modal .modal-container {
+  background-color: var(--bg-accent);
+  padding: 2rem 0;
+}
+
+#modal inner-column {
+  position: relative;
+}
+
+@media (max-width: 400px) {
+  #modal inner-column {
+    width: min(85%, 1400px);
+  }
+}
+
+#modal .modal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#modal .modal-close-btn:hover {
+  color: var(--primary);
+  cursor: pointer;
+}
+
+#modal .modal-header {
+  margin-bottom: 20px;
+}
+
+#modal :is(.modal-close-btn, label) {
+  color: var(--stencil);
+}
+
+#modal input[type='checkbox'] {
+  cursor: pointer;
+  outline: none;
+  margin: 0;
+}
+
+#modal button {
+  background-color: var(--primary);
+  color: var(--white);
+  min-width: 100%;
+  margin: 0 auto;
 }
 
 /* about container */
@@ -317,8 +372,24 @@ footer .social-media {
     display: flex;
   }
 
+  nav .nav-drop-down {
+    /* display: none !important; */
+  }
+
   .info span {
     display: inline-block;
+  }
+
+  #modal {
+    width: clamp(30vw, 410px, 50vw);
+    position: absolute;
+    top: 8vh;
+    right: 5vw;
+    z-index: 1000;
+  }
+
+  nav .burger-menu {
+    display: none;
   }
 
   footer .footer-wrapper {
@@ -342,12 +413,12 @@ footer .social-media {
     padding: 0px 10px;
   }
 
-  nav nav-inputs .container {
-    padding-bottom: 0;
+  nav .nav-drop-down {
+    /* display: flex !important; */
   }
 
-  .icons :is(.search-dd, .burger-menu) {
-    /* display: none; */
+  nav nav-inputs .container {
+    padding-bottom: 0;
   }
 
   .icons .login-icon {
@@ -355,9 +426,9 @@ footer .social-media {
     font-size: 22px;
   }
 
-  .search-bar-icon {
+  /* .search-bar-icon {
     display: block !important;
-  }
+  } */
   nav-inputs .login {
     display: flex;
   }
@@ -389,7 +460,4 @@ footer .social-media {
   nav-inputs a {
     align-items: center;
   }
-}
-
-@media (min-width: 1200px) {
 }
