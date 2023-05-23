@@ -187,6 +187,9 @@ async function displaySlider() {
       <img src="https://image.tmdb.org/t/p/original/${
         window.innerWidth >= 768 ? movie.backdrop_path : movie.poster_path
       }" alt="">
+        <img src="https://image.tmdb.org/t/p/original/${
+          window.innerWidth >= 768 ? movie.backdrop_path : movie.poster_path
+        }" alt="backdrop for ${movie.title}">
      
   </picture>
   
