@@ -1,13 +1,15 @@
 body {
-  --black: #111111;
-  --primary: #79c142;
-  --white: #ffffff;
-  --marker: #79c142;
+  --black: rgb(17, 17, 17);
+  --primary: rgb(121, 193, 66);
+  --white: rgb(255, 255, 255);
+  --marker: rgb(121, 193, 66);
 
-  --pen: #e9ecef;
+  --pen: rgb(233, 236, 239);
   --sketch: rgb(129, 129, 129);
-  --stencil: rgb(203, 203, 203);
+  /* --stencil: rgb(203, 203, 203); */
+  --stencil: rgb(108, 117, 125);
   --accent: rgba(2, 9, 22, 0.75);
   --bg-main: rgb(2, 9, 22);
-  --bg-secondary: #0f1622;
+  --bg-secondary: rgb(15, 22, 34);
+  --bg-accent: rgb(20, 30, 45);
 }
