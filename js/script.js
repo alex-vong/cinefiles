@@ -999,7 +999,7 @@ async function fetchSearchContent(endpoint, query) {
 
 function init() {
   //   Event Listeners
-  if (globalState === '/index.html' || globalState === '/') {
+  if (globalState === '/modules/cinefiles' || globalState === '/') {
     displaySlider();
     updateUI();
 
@@ -1085,3 +1085,5 @@ function init() {
 }
 
 document.addEventListener('DOMContentLoaded', init);
+
+console.log(globalState);
