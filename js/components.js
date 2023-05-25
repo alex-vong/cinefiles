@@ -30,7 +30,7 @@ header.forEach((header) => {
         <nav class="flex-col">
             <section class="masthead nav-bar flex-row">
                 <div class="flex-row">
-                    <a href="/modules/cinefiles/index.html">
+                    <a href="/">
                         <section class="about-logo flex-row">
                             <span class="fourth-level-heading main">C</span>
                             <span class="fourth-level-heading">I</span>
@@ -212,7 +212,7 @@ footer.forEach((footer) => {
     <inner-column>
     <section class="footer-wrapper flex-col gap-20">
         <section class="logos flex-col gap-8">
-            <a href="/modules/cinefiles/index.html">
+            <a href="/">
               <section class="about-logo flex-row">
                 <span class="fourth-level-heading main">C</span>
                 <span class="fourth-level-heading main">F</span>
