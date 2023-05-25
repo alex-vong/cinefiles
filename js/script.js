@@ -627,12 +627,12 @@ function generateCard(content) {
                  content.poster_path
                    ? `<img
                 src="https://image.tmdb.org/t/p/w500${content.poster_path}"
-                class="card-img-top"
+                class="card-img"
                 alt="${content === 'movie' ? content.title : content.name}"
               />`
                    : `<img
               src="https://alexvong.dev/modules/cinefiles/images/cf-no-img.svg"
-              class="card-img-top"
+              class="card-img no-image"
               alt="${content === 'movie' ? content.title : content.name}"
             />`
                }
