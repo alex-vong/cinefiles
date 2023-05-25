@@ -89,7 +89,9 @@ async function displaySlider() {
           </p>
       
           <button class="quiet-voice btn"> 
-              <a href="/movie-details.html?id=${movie.id}"> View More Info
+              <a href="/modules/cinefiles/movie-details.html?id=${
+                movie.id
+              }"> View More Info
               </a>
           </button>
           </inner-column>
@@ -155,7 +157,9 @@ async function displaySliderTV() {
               </p>
 
               <button class="quiet-voice btn"> 
-                  <a href="/tv-details.html?id=${show.id}"> View More Info
+                  <a href="/modules/cinefiles/tv-details.html?id=${
+                    show.id
+                  }"> View More Info
                   </a>
               </button>
             </inner-column>
@@ -299,7 +303,10 @@ async function displayContentDetails(type) {
   const previousPageURL = document.referrer;
   const url = new URL(previousPageURL);
 
-  if (url.pathname === '/search.html') {
+  if (
+    url.pathname === '/search.html' ||
+    url.pathname === '/modules/cinefiles/search.html'
+  ) {
     const goBackBtn = document.createElement('button');
     goBackBtn.classList.add('btn', 'goBack');
     goBackBtn.innerHTML = `<i class="fa-solid fa-arrow-left whisper"></i>`;
