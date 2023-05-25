@@ -1,28 +1,7 @@
-const head = document.querySelectorAll('head');
 const header = document.querySelectorAll('header');
 const footer = document.querySelectorAll('footer');
 const landingAbout = document.querySelectorAll('.landing-container');
 const body = document.querySelectorAll('body');
-
-// head.forEach((head) => {
-//   head.innerHTML = `
-//     <meta charset="UTF-8" />
-//     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-//     <title>CineFiles</title>
-//     <meta name="og:description" content="Search For All Your Favorite TV Shows" />
-//     <meta property="og:title" content="Welcome - The TV DataBase" />
-//     <meta property="og:type" content="">
-//     <meta property="og:url" content="">
-//     <meta property="og:image" content="https://alexvong.dev/images/tvdb-meta.svg" />
-//     <meta property="og:image:type" content="https://alexvong.dev/images/tvdb-meta.svg" />
-//     <link rel="shortcut icon" type="image/jpg" href="images/favicon.svg" />
-//     <link rel='stylesheet' href='css/style.css'>
-//     <link rel='stylesheet' href='css/details.css'>
-//     <link rel='stylesheet' href='lib/swiper.css'>
-//     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-//     `;
-// });
 
 header.forEach((header) => {
   header.innerHTML = `
