@@ -1000,7 +1000,7 @@ async function fetchSearchContent(endpoint, query) {
 function init() {
   //   Event Listeners
   if (
-    globalState === '/modules/cinefiles' ||
+    globalState === '/modules/cinefiles/' ||
     globalState === '/modules/cinefiles/index.html' ||
     globalState === '/' ||
     globalState === '/index.html'
