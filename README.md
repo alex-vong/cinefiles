@@ -2,7 +2,7 @@
 
 **CineFile** is a movie database web application that allows users to explore a vast collection of movies and TV series. It provides comprehensive information about various titles, including ratings, release dates, overviews, box office performance, costs, first aired dates, number of seasons and episodes, studios, and more.
 
-**Designed and built by [Alex Vong](https:alexvong.dev)**.
+**Designed and built by [Alex Vong](https://alexvong.dev)**.
 
 ## Design
 
@@ -33,7 +33,7 @@ The website was built using the following technologies and libraries:
 
 ## Live Demo
 
-Check out the live demo of **CineFile [here](https://alexvong.dec/modules/cinefiles)**.
+Check out the live demo of **CineFile [here](https://alexvong.dev/modules/cinefiles)**.
 
 ## Installation
 
