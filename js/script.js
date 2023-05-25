@@ -631,7 +631,7 @@ function generateCard(content) {
                 alt="${content === 'movie' ? content.title : content.name}"
               />`
                    : `<img
-              src="../images/unavailable.svg"
+              src="../images/cf-no-image.jpg"
               class="card-img-top"
               alt="${content === 'movie' ? content.title : content.name}"
             />`
