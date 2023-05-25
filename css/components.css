@@ -354,6 +354,10 @@ li {
   animation: slideUp 0.5s ease-in-out forwards;
 }
 
+.no-image {
+  border: 3px solid var(--primary);
+}
+
 @keyframes slideUp {
   0% {
     top: 15px;
