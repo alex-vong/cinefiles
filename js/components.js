@@ -23,7 +23,7 @@ header.forEach((header) => {
                         </section>
                     </a>
                     <nav-links class="quiet-voice">
-                        <a href="/modules/cinefiles/index.html" class="fw-500 home">Home</a>
+                        <a href="/modules/cinefiles/" class="fw-500 home">Home</a>
                         <a href="" class="about-btn fw-500 about">About</a>
                         <a href="" class="fw-500 imdb">Top IMDB</a>
                     </nav-links>
@@ -41,7 +41,7 @@ header.forEach((header) => {
         <section class="drop-down nav-search flex-row">
             <nav-inputs class="flex-row">
                     <div class="container">
-                      <form id="search-form" action="/search.html" class="search-form flex-col gap-10">
+                      <form id="search-form" action="/modules/cinefiles/search.html" class="search-form flex-col gap-10">
                         <div class="search-flex flex-row gap-10">
                             <input
                               type="text"
