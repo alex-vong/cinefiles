@@ -724,7 +724,7 @@ function generateHamburgerDropDownContent() {
   navSearch.style.display = 'flex';
   navInput.innerHTML = `
     <section class="nav-drop-down container quiet-voice flex-row gap-40">
-      <a href="/index.html" class="fw-500 home">Home</a>
+      <a href="/modules/cinefiles/" class="fw-500 home">Home</a>
       <a href="" class="about-btn fw-500 about">About</a>
       <a href="" class="fw-500 imdb">Top IMDB</a>
     </section>
