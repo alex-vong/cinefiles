@@ -41,7 +41,7 @@ Check out the live demo of **CineFile [here](https://alexvong.dev/modules/cinefi
 ![Mobile Home Page.](/images/mobile.png)
 ![Login Page.](/images/login.png)
 ![About Page.](/images/about.png)
-![Trending Movies.](/images/trending-movies.png)
+![Trending Movies.](/images/trending-movie.png)
 ![Mobile Trending TV.](/images/trending-tv.png)
 ![Search Page.](/images/search.png)
 
