@@ -35,6 +35,11 @@ The website was built using the following technologies and libraries:
 
 Check out the live demo of **CineFile [here](https://alexvong.dev/modules/cinefiles)**.
 
+## Images
+
+![This is a alt text.](/images/home 'Home Page.')
+![This is a alt text.](/images/mobile 'Mobile.')
+
 ## Installation
 
 To run the website locally, follow these steps:
