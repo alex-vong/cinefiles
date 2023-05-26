@@ -37,8 +37,8 @@ Check out the live demo of **CineFile [here](https://alexvong.dev/modules/cinefi
 
 ## Images
 
-![This is a alt text.](/images/home 'Home Page.')
-![This is a alt text.](/images/mobile 'Mobile.')
+![Home Page.](/images/home.png)
+![Mobile Home Page.](/images/mobile.png)
 
 ## Installation
 
