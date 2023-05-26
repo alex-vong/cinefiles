@@ -31,20 +31,6 @@ The website was built using the following technologies and libraries:
 - Detailed information about each title is available, including **ratings**, **release dates**, **overviews**, **box office performance**, **costs**, **first aired dates**, **number of seasons** and **episodes**, **studios**, and more.
 - The website allows users to **search for specific movies or TV series** by name, providing a list of relevant content along with their own details page.
 
-## Live Demo
-
-Check out the live demo of **CineFile [here](https://alexvong.dev/modules/cinefiles)**.
-
-## Images
-
-![Home Page.](/images/home.png)
-![Mobile Home Page.](/images/mobile.png)
-![Login Page.](/images/login.png)
-![About Page.](/images/about.png)
-![Trending Movies.](/images/trending-movie.png)
-![Mobile Trending TV.](/images/trending-tv.png)
-![Search Page.](/images/search.png)
-
 ## Installation
 
 To run the website locally, follow these steps:
@@ -54,6 +40,20 @@ To run the website locally, follow these steps:
 3. Open the **`index.html`** file in your web browser.
 
 Feel free to explore the code and make any modifications according to your needs.
+
+## Live Demo
+
+Check out the live demo of **CineFile [here](https://alexvong.dev/modules/cinefiles)**.
+
+## Images
+
+![About Page.](/images/about.png)
+![Home Page.](/images/home.png)
+![Mobile Home Page.](/images/mobile.png)
+![Login Page.](/images/login.png)
+![Trending Movies.](/images/trending-movie.png)
+![Mobile Trending TV.](/images/trending-tv.png)
+![Search Page.](/images/search.png)
 
 ## Contributing
 
